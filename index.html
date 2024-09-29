@@ -2,16 +2,471 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tailwind Installation</title>
+    <title>RouteX</title>
     <link rel="stylesheet" href="main.css">
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
+    
+    <style>
+        /* Keyframes for front image moving left to right */
+        @keyframes moveFrontImage {
+            0% { transform: translateX(0); }
+            50% { transform: translateX(15px); } /* Slightly move right */
+            100% { transform: translateX(0); }
+        }
+
+        /* Keyframes for back image 1 moving up and down */
+        @keyframes moveBackImage1 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-20px); } /* Move up */
+        }
+
+        /* Keyframes for back image 2 moving up and down */
+        @keyframes moveBackImage2 {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); } /* Move up */
+        }
+
+        /* Apply animation to images */
+        .image-1 {
+            animation: moveFrontImage 2s infinite; /* Front image */
+            z-index: 10;
+        }
+
+        .image-2 {
+            animation: moveBackImage1 3s infinite; /* slower movement circle*/
+            
+        }
+
+        .image-3 {
+            animation: moveBackImage2 1.5s infinite; /* Fast movement statue*/
+            z-index: 7;
+           
+        }
+
+
+        /* Keyframes for zoom in and zoom out */
+        @keyframes zoomInOut {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2); /* Slight zoom in */
+            }
+        }
+
+        /* Apply the animation to the play button */
+        .play-button {
+            animation: zoomInOut 2s infinite ease-in-out;
+            box-shadow: 0 0 20px rgba(143, 195, 143, 0.283); /* Greenish blur effect */
+        }
+
+        /* Keyframes for rotation */
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg);
+        }
+        100% {
+            transform: rotate(360deg);
+        }
+    }
+
+    /* Shake the icon of the cards */
+
+    .shake-image {
+    transition: transform 0.5s ease-in-out; /* Smooth transition for the shake */
+    }
+
+    /* Shake effect in all directions */
+    @keyframes shake {
+        0% { transform: translate(0, 0); }
+        25% { transform: translate(-2px, -2px); }
+        50% { transform: translate(2px, 2px); }
+        75% { transform: translate(-2px, 2px); }
+        100% { transform: translate(0, 0); }
+    }
+
+    /* Hover effect */
+    .shake-image:hover {
+        animation: shake 0.2s ease-in-out forwards; /* Apply shake on hover */
+    }
+
+
+    /* Apply rotation animation */
+
+    .rotate-animation {
+    animation: rotate 13s linear infinite; /* Rotate continuously */
+    }
+
+    /* Keyframes for rotation */
+    @keyframes rotate {
+        0% {
+            transform: rotate(0deg); /* Start position */
+        }
+        100% {
+            transform: rotate(360deg); /* End position */
+        }
+    }
+
+
+    /* Swapping counter digit */
+    .number-container {
+    display: flex;
+    height: 100px; /* Set height based on font size */
+    }
+
+    .digit-container {
+        position: relative; /* Position for sliding effect */
+        height: 100%; /* Ensure full height */
+        display: flex;
+        flex-direction: column; /* Stack digits vertically */
+    }
+
+    .digit {
+        display: block; /* Block to apply transformations */
+        transition: transform 0.6s ease; /* Smooth transition */
+        font-size: 70px; /* Set font size */
+        color: white; /* Set text color */
+    }
+
+    .digit.up {
+        transform: translateY(-100%); /* Slide the digit up */
+    }
+
+    </style>
+
 </head>
 <body>
-    <nav>
-        <ul>
-            <li class="bg-orange-400">Orange</li>
-            <li class="bg-white">White</li>
-            <li class="bg-green-400 mx-4 py-4 font-bold text-sm">Green</li>
-        </ul>
+    <!-- Cover Section -->
+    <div class="bg-header w-full px-[28px] py-[11px]">
+        <div class="flex justify-between items-center mx-auto">
+            <!-- Left side: Envatomarket -->
+            <div>
+                <img src="./images/envato_market-dd390ae860330996644c1c109912d2bf63885fc075b87215ace9b5b4bdc71cc8.svg" alt=""
+                class="w-[134px] h-8">
+                
+            </div>
+
+            <!-- Right side: Buy Now Button -->
+            <div>
+                <a href="#"
+                   class="bg-buyNow hover:bg-buyNowHover text-white px-[20px] py-[8px] rounded-md font-roboto text-sm">
+                   Buy Now
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Navigation Bar  -->
+    <nav class="bg-white text-green_3 font-roboto w-full px-5 py-2">
+        <div class="flex items-center justify-between w-full px-0 py-6">
+            <!-- Logo -->
+            <img src="./images/logo.svg" alt=""
+            class="w-[160px] h-[50px] cursor-pointer">
+            <!-- Options -->
+            <ul class="flex space-x-[56px] font-roboto font-bold text-[15px] text-greenBody">
+                <li><a href="#" class="cursor-pointer" >HOME</a></li>
+                <li><a href="#" class="cursor-pointer">ABOUT US</a></li>
+                <li><a href="#" class="cursor-pointer" >STORY</a></li>
+                <li><a href="#" class="cursor-pointer">VISA</a></li>
+                <li><a href="#" class="cursor-pointer">BLOG</a></li>
+                <li><a href="#" class="cursor-pointer">PAGE</a></li>
+                <li><a href="#" class="cursor-pointer">CONTACT</a></li>
+            </ul>
+            <!-- Get an appointment Button -->
+            <button class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px] rounded-full font-roboto 
+                hover:bg-greenBody transition-all duration-200">
+                <span>Get An Appointment</span>
+                <i data-feather="arrow-right" class="text-white w-5 h-5"></i>                       
+            </button>
+
+        </div>
     </nav>
+
+    <!-- Content Box -1 -->
+    <section class="flex relative min-h-[720px] bg-greenBody rounded-[50px] w-[97%] mx-auto">
+        <div class="justify-between relative px-8 py-10">
+    
+            <!-- Left Side -->
+            <div class="flex flex-col justify-center ">
+                <p class="font-roboto font-bold text-white text-[60px] pt-[150px]">
+                    Visa Made Easy Dreams Made Possible
+                </p>
+    
+                <div class="flex items-center mt-4 space-x-4 ">
+                    <button class="relative flex flex-row w-fit text-white py-[16px] px-[30px] font-bold rounded-full font-roboto bg-greenBody border overflow-hidden group">
+                        <span class="relative z-10">Read More</span>
+                        <i data-feather="arrow-right" class="text-white w-5 h-5 ml-2 relative z-10"></i>
+                        
+                        <!-- Background hover effect -->
+                        <div class="absolute inset-0 bg-getAnAppointment transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                    </button>
+    
+                    <div class="relative left-4 gap-3 flex items-center">
+                        <div class="relative play-button opacity-90 rounded-full w-[44px] h-[44px] items-center bg-playButtonZoom">
+                            <!-- Play button image -->
+                             <button>
+                                <img src="./images/PlayButonIcon.svg" alt="Play Button" class="items-center w-[30px] h-[30px] r mt-[9px] ml-[9px]">
+                             </button>
+                            
+                            
+                        </div>
+                        <a href="/" class="text-white left-2 font-bold font-roboto">Watch Our Videos</a>
+                        
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Right Side -->
+            <div class="w-[130%] relative overflow-hidden justify-between">
+                <!-- Image container with overlapping images -->
+                <div class=" relative w-full h-full ms-auto"> 
+                    <!-- Front Image -->
+                    <img src="./images/frontImage.png" alt="Image 1"
+                        class="absolute top-9 right-40 w-[500px] h-[684px] image-1 object-cover"> 
+                    
+                    <!-- Back Images -->
+                    <img src="./images/backImage.png" alt="Image 2"
+                        class="absolute top-64 right-10 w-[600px] h-[600px] image-2  object-cover filter saturate-100 brightness-90 contrast-70" style="clip-path: inset(0 0 10% 0);"> 
+                    
+                    <img src="./images/backImage2.png" alt="Image 3"
+                        class="absolute top-36 -right-0 w-[400px] h-[610px] image-3  object-cover filter saturate-150 brightness-110 contrast-120"> 
+                </div>
+            </div>
+    </section>
+
+    <!-- Card 1 -->
+    <section class="grid grid-cols-3 gap-12 w-[90%] mx-auto pt-16 min-h-[500px]">
+        <!-- Box 1 -->
+
+        <div class="z-[100] border-2 border-gray-300 relative w-full h-full flex flex-col  pt-12 pl-8 py-6 pr-8 rounded-[20px]">
+            <div class="relative flex flex-col rounded-full bg-getAnAppointment w-[100px] h-[100px] items-center justify-center overflow-hidden">
+                <img src="./images/Card-1.svg" alt="" class="w-[50px] h-[50px] shake-image transition-transform duration-500 ease-in-out">
+            </div>
+            
+            
+            
+            <div class="flex flex-col">
+                <h2 class="font-roboto font-bold text-greenBody text-[22px] pt-9">Food and Wine Tours</h2>
+                <p class="font-roboto text-gray-500 leading-[1.7] text-justify pt-5">Dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nun Lorem ipsum
+                     dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nunc. Duis egestas ac</p>
+            </div>
+            
+
+        </div>
+
+        <!-- Box 2 -->
+        <div class="z-[100] border-2 border-gray-300 relative w-full h-full flex flex-col  pt-12 pl-8 py-6 pr-8 rounded-[20px]">
+            <div class="relative flex flex-col rounded-full bg-getAnAppointment w-[100px] h-[100px] items-center justify-center overflow-hidden">
+                <img src="./images/card-2.svg" alt="" class="w-[50px] h-[50px] shake-image transition-transform duration-500 ease-in-out">
+            </div>
+            
+            <div class="flex flex-col">
+                <h2 class="font-roboto font-bold text-greenBody text-[22px] pt-9">Travel Opportunities</h2>
+                <p class="font-roboto text-gray-500 leading-[1.7] text-justify pt-5">Dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nun Lorem ipsum
+                     dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nunc. Duis egestas ac</p>
+            </div>
+            
+
+        </div>
+
+        <!-- Box 3 -->
+        <div class="z-[100] border-2 border-gray-300 relative w-full h-full flex flex-col  pt-12 pl-8 py-6 pr-8 rounded-[20px]">
+            <div class="relative flex flex-col rounded-full bg-getAnAppointment w-[100px] h-[100px] items-center justify-center overflow-hidden">
+                <img src="./images/Card-3.svg" alt="" class="w-[50px] h-[50px] shake-image transition-transform duration-500 ease-in-out">
+            </div>
+            
+            <div class="flex flex-col">
+                <h2 class="font-roboto font-bold text-greenBody text-[22px] pt-9">Solo Travel Planning</h2>
+                <p class="font-roboto text-gray-500 leading-[1.7] text-justify pt-5">Dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nun Lorem ipsum
+                     dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nunc. Duis egestas ac</p>
+            </div>
+            
+
+        </div>
+    </section>
+
+    <!-- Why Choose us card -->
+
+    <section class="relative w-[93%] mx-auto pt-24 justify-between">
+        <!-- left section -->
+        <div class="flex flex-row relative min-h-[500px] gap-10">
+            <!-- left side -->
+             <div class="flex flex-col relative">
+                <!-- left image -->
+                <div class="relative inline-block">
+                    <!-- Border Div -->
+                    <div class="absolute top-3 left-3 border-[1px] border-getAnAppointment rounded-[20px] pointer-events-none w-full h-full z-10"></div>
+                   
+                    <img src="./images/choose-us-left-img.png" alt="" class="relative z-0 rounded-[20px]">
+                </div>
+  
+                <div class="flex justify-center items-center pt-10">
+                    <img src="./images/choose-us-circle-img.png" alt=""
+                         class="rotate-animation"> 
+                </div>
+
+             </div>
+
+            <!-- Right side -->
+             <div class="flex flex-col min-h-[500px]">
+                <!-- Left image right portion -->
+                 <!-- Box -->
+                <div class="flex flex-col h-screen w-full gap-8">
+                    <div class=" h-[20%] bg-button rounded-[20px] flex flex-row justify-center items-center w-full pl-12 pr-14 pt-12 pb-12">
+                        
+                        
+                        <div class="flex flex-row items-center gap-6">
+                            <div class="number-container relative">
+                                <div id="tensContainer" class="digit-container">
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">0</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">1</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">2</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">3</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">4</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">5</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">6</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">7</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">8</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">9</span>
+                                </div>
+                                <div id="unitsContainer" class="digit-container">
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">0</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">1</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">2</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">3</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">4</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">5</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">6</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">7</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">8</span>
+                                    <span class="digit font-roboto text-[70px] font-bold text-white">9</span>
+                                </div>
+                            </div>
+                            <div class="flex flex-col relative">
+                                <p class="text-white font-roboto text-[18px]">Years Of</p>
+                                <span class="text-white font-roboto text-[18px]">Experience</span>
+                            </div>
+                        </div>
+                        
+                        
+
+                        
+                    </div>
+                    <!-- image below box -->
+                    <div class="flex-grow relative h-[80%]">
+                        <img src="./images/choose-us-right-img.png" alt="Experience Image" class="absolute inset-0  rounded-[20px]">
+                    </div>
+                </div>
+                </div>
+
+                <div>
+                    <!-- writting -->
+                    <h2></h2>
+                    <p></p>
+
+                </div>
+
+                <!-- 2 cards -->
+                 <div>
+
+                 </div>
+
+                 <!--  button & contact -->
+
+             </div>
+        </div>
+
+        <!-- Right section -->
+         <div>
+
+         </div>
+    </section>
+    
+
+        <!-- JS Script -->
+        <script>
+            function animateSlidingCounter() {
+                const tensContainer = document.getElementById('tensContainer');
+                const unitsContainer = document.getElementById('unitsContainer');
+                let count = 0;
+                const target = 25; // Set target number
+                const speed = 100; // Speed of the count increment
+
+                const interval = setInterval(() => {
+                    count++;
+
+                    // Determine the tens and units digits
+                    const tens = Math.floor(count / 10);
+                    const units = count % 10;
+
+                    // Animate the tens digit if it changes
+                    if (tensContainer.firstElementChild.textContent != tens) {
+                        animateDigit(tensContainer, tens);
+                    }
+                    
+                    // Animate the units digit if it changes
+                    if (unitsContainer.firstElementChild.textContent != units) {
+                        animateDigit(unitsContainer, units);
+                    }
+
+                    // Stop when the target number is reached
+                    if (count === target) {
+                        clearInterval(interval);
+                    }
+                }, speed);
+            }
+
+            function animateDigit(container, newDigit) {
+                const currentDigit = container.firstElementChild; // Get the first digit
+
+                const newDigitElement = document.createElement('span');
+                newDigitElement.className = 'digit font-roboto text-[70px] font-bold text-white';
+                newDigitElement.textContent = newDigit;
+
+                // Add the new digit to the container
+                container.appendChild(newDigitElement);
+                
+                // Trigger the animation
+                currentDigit.classList.add('up'); // Slide the current digit up
+                newDigitElement.classList.add('up'); // Slide the new digit up
+
+                // Remove the old digit after the transition
+                setTimeout(() => {
+                    currentDigit.remove();
+                    newDigitElement.classList.remove('up'); // Reset position of the new digit
+                }, 500); // Match this with the CSS transition duration
+            }
+
+            // Scroll detection and trigger animation
+            window.addEventListener('scroll', function () {
+                const flipContainer = document.querySelector('.number-container');
+                const rect = flipContainer.getBoundingClientRect();
+
+                if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+                    animateSlidingCounter();
+                    // Remove the event listener after the animation starts to prevent it from running multiple times
+                    window.removeEventListener('scroll', arguments.callee);
+                }
+            });
+
+        </script>
+
+
+
+
+
+
+<!-- ICON SCript -->
+  <!-- Feather Icons CDN -->
+  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
+
+  <!-- Initialize Feather Icons -->
+  <script>
+      feather.replace(); // Replaces <i> tags with SVGs
+  </script>
+        
+
+   
 </body>
 </html>
