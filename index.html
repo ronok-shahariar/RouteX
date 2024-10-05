@@ -37,7 +37,7 @@
 
                 .image-2 {
                     animation: moveBackImage1 3s infinite; /* slower movement circle*/
-                    
+                    z-index: 4;
                 }
 
                 .image-3 {
@@ -312,7 +312,7 @@
         </div>
 
         <!-- Navigation Bar  -->
-        <nav class="bg-white text-green_3 font-roboto w-full px-5 py-2 relative z-20">
+        <nav class="bg-gray-100 text-green_3 font-roboto w-full px-5 relative z-20">
             <div class="flex items-center justify-between w-full px-0 py-6">
                 <!-- Logo -->
                 <img src="./images/logo.svg" alt="" class="w-[160px] h-[50px] cursor-pointer">
@@ -369,61 +369,66 @@
             </ul>
         </nav>
 
+
+
+
+
         <!-- Content Box -1 -->
-        <section class="flex relative min-h-[720px] bg-greenBody rounded-[50px] w-[97%] mx-auto">
-            <div class="justify-between relative px-8 py-10">
-        
-                <!-- Left Side -->
-                <div class="flex flex-col justify-center ">
-                    <p class="font-roboto font-bold text-white text-[60px] pt-[150px]">
-                        Visa Made Easy Dreams Made Possible
-                    </p>
-        
-                    <div class="flex items-center mt-4 space-x-4 ">
-                        <button class="relative flex flex-row w-fit text-white py-[16px] px-[30px] font-bold rounded-full font-roboto bg-greenBody border overflow-hidden group">
-                            <span class="relative z-10">Read More</span>
-                            <i data-feather="arrow-right" class="text-white w-5 h-5 ml-2 relative z-10"></i>
-                            
-                            <!-- Background hover effect -->
-                            <div class="absolute inset-0 bg-getAnAppointment transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
-                        </button>
-        
-                        <div class="relative left-4 gap-3 flex items-center">
-                            <div class="relative play-button opacity-90 rounded-full w-[44px] h-[44px] items-center bg-playButtonZoom">
-                                <!-- Play button image -->
-                                <button>
-                                    <img src="./images/PlayButonIcon.svg" alt="Play Button" class="items-center w-[30px] h-[30px] r mt-[9px] ml-[9px]">
-                                </button>
-                                
-                                
-                            </div>
-                            <a href="/" class="text-white left-2 font-bold font-roboto">Watch Our Videos</a>
-                            
-                        </div>
-                    </div>
+        <section class=" lg:flex relative lg:min-h-[720px]  bg-greenBody rounded-[50px] w-[97%] mx-auto">
+            <!-- Left Side -->
+             <div class=" justify-between relative px-8 py-8 ">      
+                 <div class="flex flex-col justify-center ">
+                     <p class="font-roboto font-bold text-white text-[30px] lg:text-[60px] pt-[20px] lg:pt-[150px] ">
+                         Visa Made Easy Dreams Made Possible
+                     </p>
+         
+                     <div class="flex items-center mt-4 space-x-4 ">
+                         <button class="relative flex flex-row w-fit text-white py-[16px] px-[30px] font-bold rounded-full font-roboto bg-greenBody border overflow-hidden group">
+                             <span class="relative z-10">Read More</span>
+                             <i data-feather="arrow-right" class="text-white w-5 h-5 ml-2 relative z-10"></i>
+                             
+                             <!-- Background hover effect -->
+                             <div class="absolute inset-0 bg-getAnAppointment transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
+                         </button>
+         
+                         <div class="relative left-4 gap-3 flex items-center">
+                             <div class="relative play-button opacity-90 rounded-full w-[44px] h-[44px] items-center bg-playButtonZoom">
+                                 <!-- Play button image -->
+                                 <button>
+                                     <img src="./images/PlayButonIcon.svg" alt="Play Button" class="items-center w-[30px] h-[30px] r mt-[9px] ml-[9px]">
+                                 </button>
+                                 
+                                 
+                             </div>
+                             <a href="/" class="text-white left-2 font-bold font-roboto">Watch Our Videos</a>
+                             
+                         </div>
+                     </div>
+                 </div>
+             </div>
+ 
+             <!-- Right Side -->
+             <div class=" w-full lg:w-[130%] relative overflow-hidden ">
+                <!-- Image container with overlapping images -->
+                <div class=" relative w-full min-h-[450px] lg:h-full mx-auto overflow-hidden"> 
+                    <!-- Front Image -->
+                    <img src="./images/frontImage.png" alt="Image 1"
+                        class="absolute  -bottom-24 left-10 lg:top-9 lg:right-40 w-[350px] h-[484px] lg:w-[500px] lg:h-[684px] image-1 object-cover"> 
+                    
+                    <!-- Back Images -->
+                    <img src="./images/backImage.png" alt="Image 2"
+                        class="absolute  -bottom-32 left-4 lg:top-64 lg:right-10 w-[440px] h-[440px] lg:w-[600px] lg:h-[600px] image-2  object-cover filter saturate-100 brightness-90 contrast-70" style="clip-path: inset(0 0 10% 0);"> 
+                    
+                    <img src="./images/backImage2.png" alt="Image 3"
+                        class="absolute  -bottom-24 right-[50px] lg:top-36 lg:-right-0 w-[400px] h-[510px] lg:w-[400px] lg:h-[610px] image-3  object-cover filter saturate-150 brightness-110 contrast-120"> 
                 </div>
             </div>
-
-            <!-- Right Side -->
-                <div class="w-[130%] relative overflow-hidden justify-between">
-                    <!-- Image container with overlapping images -->
-                    <div class=" relative w-full h-full ms-auto"> 
-                        <!-- Front Image -->
-                        <img src="./images/frontImage.png" alt="Image 1"
-                            class="absolute top-9 right-40 w-[500px] h-[684px] image-1 object-cover"> 
-                        
-                        <!-- Back Images -->
-                        <img src="./images/backImage.png" alt="Image 2"
-                            class="absolute top-64 right-10 w-[600px] h-[600px] image-2  object-cover filter saturate-100 brightness-90 contrast-70" style="clip-path: inset(0 0 10% 0);"> 
-                        
-                        <img src="./images/backImage2.png" alt="Image 3"
-                            class="absolute top-36 -right-0 w-[400px] h-[610px] image-3  object-cover filter saturate-150 brightness-110 contrast-120"> 
-                    </div>
-                </div>
         </section>
 
-        <!-- Card 1 -->
-        <section class="grid grid-cols-3 gap-12 w-[90%] mx-auto pt-16 min-h-[500px]">
+
+
+        <!-- Card Show -->
+        <section class=" grid grid-cols-1 lg:grid-cols-3 gap-12 w-[90%] mx-auto pt-16 min-h-[500px]">
             <!-- Box 1 -->
 
             <div class="z-[100] border-2 border-gray-300 relative w-full h-full flex flex-col  pt-12 pl-8 py-6 pr-8 rounded-[20px]">
