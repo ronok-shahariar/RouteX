@@ -1,1075 +1,2114 @@
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>RouteX</title>
-    <link rel="stylesheet" href="main.css">
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css" rel="stylesheet">
-    
+    <link rel="stylesheet" href="main.css" />
+    <link
+      href="https://cdn.jsdelivr.net/npm/tailwindcss@2.0.0/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+
     <style>
+      /* ================= Content Box 1 left right up down moving effect */
 
-        /* ================= Content Box 1 left right up down moving effect */
-
-                /* Keyframes for front image moving left to right */
-                @keyframes moveFrontImage {
-                    0% { transform: translateX(0); }
-                    50% { transform: translateX(15px); } /* Slightly move right */
-                    100% { transform: translateX(0); }
-                }
-
-                /* Keyframes for back image 1 moving up and down */
-                @keyframes moveBackImage1 {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(-20px); } /* Move up */
-                }
-
-                /* Keyframes for back image 2 moving up and down */
-                @keyframes moveBackImage2 {
-                    0%, 100% { transform: translateY(0); }
-                    50% { transform: translateY(-10px); } /* Move up */
-                }
-
-                /* Apply animation to images */
-                .image-1 {
-                    animation: moveFrontImage 2s infinite; /* Front image */
-                    z-index: 10;
-                }
-
-                .image-2 {
-                    animation: moveBackImage1 3s infinite; /* slower movement circle*/
-                    z-index: 4;
-                }
-
-                .image-3 {
-                    animation: moveBackImage2 1.5s infinite; /* Fast movement statue*/
-                    z-index: 7;
-                
-                }
-
-/* =========================================================================================== */
-
-        /* =============== Play Button Zoom in Zoom out */
-            /* Keyframes for zoom in and zoom out */
-                @keyframes zoomInOut {
-                    0%, 100% {
-                        transform: scale(1);
-                    }
-                    50% {
-                        transform: scale(1.2); /* Slight zoom in */
-                    }
-                }
-
-            /* Apply the animation to the play button */
-                .play-button {
-                    animation: zoomInOut 2s infinite ease-in-out;
-                    box-shadow: 0 0 20px rgba(143, 195, 143, 0.283); /* Greenish blur effect */
-                }
-
-/* =================================================================================== */   
-
-    /* ================== Shake the icon of the cards */
-
-                        .shake-image {
-                        transition: transform 0.5s ease-in-out; /* Smooth transition for the shake */
-                        }
-
-                        /* Shake effect in all directions */
-                        @keyframes shake {
-                            0% { transform: translate(0, 0); }
-                            25% { transform: translate(-2px, -2px); }
-                            50% { transform: translate(2px, 2px); }
-                            75% { transform: translate(-2px, 2px); }
-                            100% { transform: translate(0, 0); }
-                        }
-
-                        /* Hover effect */
-                        .shake-image:hover {
-                            animation: shake 0.2s ease-in-out forwards; /* Apply shake on hover */
-                        }
-
-/* ================================================================================== */
-
-    /* ==================  Apply rotation animation */
-
-                        .rotate-animation {
-                        animation: rotate 13s linear infinite; /* Rotate continuously */
-                        }
-
-                        /* Keyframes for rotation */
-                        @keyframes rotate {
-                            0% {
-                                transform: rotate(0deg); /* Start position */
-                            }
-                            100% {
-                                transform: rotate(360deg); /* End position */
-                            }
-                        }
-
-/* =============================================================================== */
-
-             /* ===================  Swapping counter digit */
-
-                        .number-container {
-                        display: flex;
-                        height: 100px; /* Set height based on font size */
-                        }
-
-                        .digit-container {
-                            position: relative; /* Position for sliding effect */
-                            height: 100%; /* Ensure full height */
-                            display: flex;
-                            flex-direction: column; /* Stack digits vertically */
-                        }
-
-                        .digit {
-                            display: block; /* Block to apply transformations */
-                            transition: transform 0.6s ease; /* Smooth transition */
-                            font-size: 70px; /* Set font size */
-                            color: white; /* Set text color */
-                        }
-
-                        .digit.up {
-                            transform: translateY(-100%); /* Slide the digit up */
-                        }
-
-/* ============================================================================ */
-
-             /* ==================  Brand logos Scrolling Container */
-
-                        /* Keyframe for step-based scrolling */
-                        @keyframes stepScroll {
-                            0% { transform: translateX(0); } /* Start at the first image */
-                            100% { transform: translateX(-100%); } /* Move the container left by 100% */
-                        }
-
-                        /* Container for scrolling images */
-                        .scroll-container {
-                            display: flex;
-                            animation: stepScroll 30s steps(5) infinite; /* Steps(5) for 5 images */
-                            width: calc(100% * 6); /* Set width to accommodate all images for smooth scrolling */
-                        }
-
-                        /* Wrapper to hide overflow */
-                        .scroll-wrapper {
-                            display: flex;
-                            overflow: hidden;
-                            width: 100%; /* Set full width of container */
-                        }
-
-                        /* Image styling */
-                        .scroll-image {
-                            width: 10%; /* Each image takes 20% of the full container width */
-                            flex-shrink: 0; /* Prevent images from shrinking */
-                        }
-
-                        /* Extra duplication for smooth looping */
-                        .scroll-container img {
-                            display: block;
-                        }
-
-/* ====================================================================================== */
-
-        /* ===========================  Our countries */
-        
-        .flip-card {
-            transform-style: preserve-3d;
-            transition: transform 0.8s ease; /* Slow flip transition */
-            position: relative; /* Allow absolute positioning of back */
-            width: 100%; /* Full width of the parent */
-            height: 100%; /* Full height of the parent */
+      /* Keyframes for front image moving left to right */
+      @keyframes moveFrontImage {
+        0% {
+          transform: translateX(0);
         }
-        .flip-card .back {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            backface-visibility: hidden; /* Hide back when facing front */
-            background-color: #38a169; /* Same as green-500 */
-            color: white; /* Text color */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            transform: rotateX(180deg); /* Hide back side initially */
+        50% {
+          transform: translateX(15px);
+        } /* Slightly move right */
+        100% {
+          transform: translateX(0);
         }
-        .parent-card {
-            perspective: 1000px; /* Add perspective for 3D effect */
-            width: 410px; /* Initial width of parent card */
-            height: 400px; /* Fixed height of parent */
-            margin: 20px; /* Spacing around parent card */
-            background-color: #3b82f6; /* Tailwind blue-500 */
-            border-radius: 20px; /* Rounded corners */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for parent */
-            overflow: hidden; /* Hide overflow for smooth transition */
-            transition: width 0.8s ease, height 0.8s ease; /* Smooth transition */
-            position: relative; /* For absolute positioning of the child card and logo */
-            transform-origin: left; /* Fix the left side when expanding */
+      }
+
+      /* Keyframes for back image 1 moving up and down */
+      @keyframes moveBackImage1 {
+        0%,
+        100% {
+          transform: translateY(0);
         }
-        .parent-card:hover {
-            width: 100%; /* Expand only to the right on hover */
-            height: 400px; /* Keep height constant */
+        50% {
+          transform: translateY(-20px);
+        } /* Move up */
+      }
+
+      /* Keyframes for back image 2 moving up and down */
+      @keyframes moveBackImage2 {
+        0%,
+        100% {
+          transform: translateY(0);
         }
-        .parent-card img {
-            width: 100%; /* Full width image */
-            height: 100%; /* Full height image */
-            object-fit: cover; /* Maintain image aspect ratio */
+        50% {
+          transform: translateY(-10px);
+        } /* Move up */
+      }
+
+      /* Apply animation to images */
+      .image-1 {
+        animation: moveFrontImage 2s infinite; /* Front image */
+        z-index: 10;
+      }
+
+      .image-2 {
+        animation: moveBackImage1 3s infinite; /* slower movement circle*/
+        z-index: 4;
+      }
+
+      .image-3 {
+        animation: moveBackImage2 1.5s infinite; /* Fast movement statue*/
+        z-index: 7;
+      }
+
+      /* =========================================================================================== */
+
+      /* =============== Play Button Zoom in Zoom out */
+      /* Keyframes for zoom in and zoom out */
+      @keyframes zoomInOut {
+        0%,
+        100% {
+          transform: scale(1);
         }
-        .logo {
-            position: absolute;
-            top: 15px; /* Distance from the top */
-            right: 15px; /* Distance from the right */
-            width: 50px; /* Logo width */
-            height: 50px; /* Logo height */
-            background-color: rgba(255, 255, 255, 0.8); /* Semi-transparent background */
-            border-radius: 50%; /* Make the logo circular */
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for logo */
-            transition: transform 0.8s ease; /* Transition for rotation */
-            
+        50% {
+          transform: scale(1.2); /* Slight zoom in */
         }
+      }
 
-                /* modification for rotation logo */
+      /* Apply the animation to the play button */
+      .play-button {
+        animation: zoomInOut 2s infinite ease-in-out;
+        box-shadow: 0 0 20px rgba(143, 195, 143, 0.283); /* Greenish blur effect */
+      }
 
-                .parent-card:hover .logo {
-                    animation: rotateClockwise 0.8s forwards; /* Rotate clockwise on hover */
-                }
+      /* =================================================================================== */
 
-                .parent-card:not(:hover) .logo {
-                    animation: rotateAntiClockwise 0.8s forwards; /* Rotate counterclockwise when not hovered */
-                }
+      /* ================== Shake the icon of the cards */
 
-                @keyframes rotateClockwise {
-                    from {
-                        transform: rotate(0deg);
-                    }
-                    to {
-                        transform: rotate(360deg);
-                    }
-                }
+      .shake-image {
+        transition: transform 0.5s ease-in-out; /* Smooth transition for the shake */
+      }
 
-                @keyframes rotateAntiClockwise {
-                    from {
-                        transform: rotate(360deg);
-                    }
-                    to {
-                        transform: rotate(0deg);
-                    }
-                }
-             /* ========================= Modification close */
-
-        .child-card {
-            position: absolute; /* Position child card absolutely */
-            top: 70%; /* Center vertically */
-            left: 50%; /* Center horizontally */
-            transform: translate(-50%, -50%) rotateX(90deg); /* Start at 90 degrees */
-            width: 90%; /* 50% width of parent card */
-            height: 50%; /* 50% height of parent card */
-            transition: opacity 0.8s ease 0.2s, transform 0.8s ease; /* Smooth appearance and flip */
-            opacity: 0; /* Start invisible */
+      /* Shake effect in all directions */
+      @keyframes shake {
+        0% {
+          transform: translate(0, 0);
         }
-        .parent-card:hover .child-card {
-            opacity: 1; /* Become visible on parent hover */
-            transform: translate(-50%, -50%) rotateX(0deg); /* Flip to front on parent hover */
+        25% {
+          transform: translate(-2px, -2px);
         }
-        .child-card:hover {
-            transform: translate(-50%, -50%) rotateX(90deg); /* Flip back on hover */
+        50% {
+          transform: translate(2px, 2px);
         }
+        75% {
+          transform: translate(-2px, 2px);
+        }
+        100% {
+          transform: translate(0, 0);
+        }
+      }
 
+      /* Hover effect */
+      .shake-image:hover {
+        animation: shake 0.2s ease-in-out forwards; /* Apply shake on hover */
+      }
 
+      /* ================================================================================== */
 
-       
-        
+      /* ==================  Apply rotation animation */
 
+      .rotate-animation {
+        animation: rotate 13s linear infinite; /* Rotate continuously */
+      }
+
+      /* Keyframes for rotation */
+      @keyframes rotate {
+        0% {
+          transform: rotate(0deg); /* Start position */
+        }
+        100% {
+          transform: rotate(360deg); /* End position */
+        }
+      }
+
+      /* =============================================================================== */
+
+      /* ===================  Swapping counter digit */
+
+      .number-container {
+        display: flex;
+        height: 100px; /* Set height based on font size */
+      }
+
+      .digit-container {
+        position: relative; /* Position for sliding effect */
+        height: 100%; /* Ensure full height */
+        display: flex;
+        flex-direction: column; /* Stack digits vertically */
+      }
+
+      .digit {
+        display: block; /* Block to apply transformations */
+        transition: transform 0.6s ease; /* Smooth transition */
+        font-size: 70px; /* Set font size */
+        color: white; /* Set text color */
+      }
+
+      .digit.up {
+        transform: translateY(-100%); /* Slide the digit up */
+      }
+
+      /* ============================================================================ */
+
+      /* ==================  Brand logos Scrolling Container */
+
+      /* Keyframe for step-based scrolling */
+      @keyframes stepScroll {
+        0% {
+          transform: translateX(0);
+        } /* Start at the first image */
+        100% {
+          transform: translateX(-100%);
+        } /* Move the container left by 100% */
+      }
+
+      /* Container for scrolling images */
+      .scroll-container {
+        display: flex;
+        animation: stepScroll 30s steps(5) infinite; /* Steps(5) for 5 images */
+        width: calc(
+          100% * 6
+        ); /* Set width to accommodate all images for smooth scrolling */
+      }
+
+      /* Wrapper to hide overflow */
+      .scroll-wrapper {
+        display: flex;
+        overflow: hidden;
+        width: 100%; /* Set full width of container */
+      }
+
+      /* Image styling */
+      .scroll-image {
+        width: 10%; /* Each image takes 20% of the full container width */
+        flex-shrink: 0; /* Prevent images from shrinking */
+      }
+
+      /* Extra duplication for smooth looping */
+      .scroll-container img {
+        display: block;
+      }
+
+      /* ====================================================================================== */
+
+      /* ===========================  Our countries */
+
+      .flip-card {
+        transform-style: preserve-3d;
+        transition: transform 0.8s ease; /* Slow flip transition */
+        position: relative; /* Allow absolute positioning of back */
+        width: 100%; /* Full width of the parent */
+        height: 100%; /* Full height of the parent */
+      }
+      .flip-card .back {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        backface-visibility: hidden; /* Hide back when facing front */
+        background-color: #38a169; /* Same as green-500 */
+        color: white; /* Text color */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transform: rotateX(180deg); /* Hide back side initially */
+      }
+      .parent-card {
+        perspective: 1000px; /* Add perspective for 3D effect */
+        width: 410px; /* Initial width of parent card */
+        height: 400px; /* Fixed height of parent */
+        margin: 20px; /* Spacing around parent card */
+        background-color: #3b82f6; /* Tailwind blue-500 */
+        border-radius: 20px; /* Rounded corners */
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Shadow for parent */
+        overflow: hidden; /* Hide overflow for smooth transition */
+        transition: width 0.8s ease, height 0.8s ease; /* Smooth transition */
+        position: relative; /* For absolute positioning of the child card and logo */
+        transform-origin: left; /* Fix the left side when expanding */
+      }
+      .parent-card:hover {
+        width: 100%; /* Expand only to the right on hover */
+        height: 400px; /* Keep height constant */
+      }
+      .parent-card img {
+        width: 100%; /* Full width image */
+        height: 100%; /* Full height image */
+        object-fit: cover; /* Maintain image aspect ratio */
+      }
+      .logo {
+        position: absolute;
+        top: 15px; /* Distance from the top */
+        right: 15px; /* Distance from the right */
+        width: 50px; /* Logo width */
+        height: 50px; /* Logo height */
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.8
+        ); /* Semi-transparent background */
+        border-radius: 50%; /* Make the logo circular */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Slight shadow for logo */
+        transition: transform 0.8s ease; /* Transition for rotation */
+      }
+
+      /* modification for rotation logo */
+
+      .parent-card:hover .logo {
+        animation: rotateClockwise 0.8s forwards; /* Rotate clockwise on hover */
+      }
+
+      .parent-card:not(:hover) .logo {
+        animation: rotateAntiClockwise 0.8s forwards; /* Rotate counterclockwise when not hovered */
+      }
+
+      @keyframes rotateClockwise {
+        from {
+          transform: rotate(0deg);
+        }
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      @keyframes rotateAntiClockwise {
+        from {
+          transform: rotate(360deg);
+        }
+        to {
+          transform: rotate(0deg);
+        }
+      }
+      /* ========================= Modification close */
+
+      .child-card {
+        position: absolute; /* Position child card absolutely */
+        top: 70%; /* Center vertically */
+        left: 50%; /* Center horizontally */
+        transform: translate(-50%, -50%) rotateX(90deg); /* Start at 90 degrees */
+        width: 90%; /* 50% width of parent card */
+        height: 50%; /* 50% height of parent card */
+        transition: opacity 0.8s ease 0.2s, transform 0.8s ease; /* Smooth appearance and flip */
+        opacity: 0; /* Start invisible */
+      }
+      .parent-card:hover .child-card {
+        opacity: 1; /* Become visible on parent hover */
+        transform: translate(-50%, -50%) rotateX(0deg); /* Flip to front on parent hover */
+      }
+      .child-card:hover {
+        transform: translate(-50%, -50%) rotateX(90deg); /* Flip back on hover */
+      }
     </style>
-
-</head>
-<body>
-    
-
+  </head>
+  <body>
     <!-- Full Body after cover grey color -->
-    <div class="bg-gray-100">
+    <div class="bg-[#F1F5EB]">
+      <!-- Cover Section -->
+      <div class="bg-header w-full px-[28px] py-[11px]">
+        <div class="flex justify-between items-center mx-auto">
+          <!-- Left side: Envatomarket -->
+          <div>
+            <img
+              src="./images/envato_market-dd390ae860330996644c1c109912d2bf63885fc075b87215ace9b5b4bdc71cc8.svg"
+              alt=""
+              class="w-[134px] h-8"
+            />
+          </div>
 
-        <!-- Cover Section -->
-        <div class="bg-header w-full px-[28px] py-[11px]">
-            <div class="flex justify-between items-center mx-auto">
-                <!-- Left side: Envatomarket -->
-                <div>
-                    <img src="./images/envato_market-dd390ae860330996644c1c109912d2bf63885fc075b87215ace9b5b4bdc71cc8.svg" alt=""
-                    class="w-[134px] h-8">
-                    
-                </div>
+          <!-- Right side: Buy Now Button -->
+          <div>
+            <a
+              href="#"
+              class="bg-buyNow hover:bg-buyNowHover text-white px-[20px] py-[8px] rounded-md font-roboto text-sm"
+            >
+              Buy Now
+            </a>
+          </div>
+        </div>
+      </div>
 
-                <!-- Right side: Buy Now Button -->
-                <div>
-                    <a href="#"
-                    class="bg-buyNow hover:bg-buyNowHover text-white px-[20px] py-[8px] rounded-md font-roboto text-sm">
-                    Buy Now
-                    </a>
-                </div>
-            </div>
+      <!-- Navigation Bar  -->
+      <nav class="text-green_3 font-roboto w-full px-5 relative z-20">
+        <div class="flex items-center justify-between w-full px-0 py-6">
+          <!-- Logo -->
+          <img
+            src="./images/logo.svg"
+            alt=""
+            class="w-[160px] h-[50px] cursor-pointer"
+          />
+
+          <!-- Mobile menu button (hamburger icon) -->
+          <div class="block lg:hidden">
+            <button id="menu-toggle" class="text-greenBody focus:outline-none">
+              <svg
+                class="w-6 h-6"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  stroke-linecap="round"
+                  stroke-linejoin="round"
+                  stroke-width="2"
+                  d="M4 6h16M4 12h16M4 18h16"
+                ></path>
+              </svg>
+            </button>
+          </div>
+
+          <!-- Options (hidden on small screens) -->
+          <ul
+            class="hidden lg:flex space-x-[56px] font-roboto font-bold text-[15px] text-greenBody"
+          >
+            <li><a href="#" class="cursor-pointer">HOME</a></li>
+            <li><a href="#" class="cursor-pointer">ABOUT US</a></li>
+            <li><a href="#" class="cursor-pointer">STORY</a></li>
+            <li><a href="#" class="cursor-pointer">VISA</a></li>
+            <li><a href="#" class="cursor-pointer">BLOG</a></li>
+            <li><a href="#" class="cursor-pointer">PAGE</a></li>
+            <li><a href="#" class="cursor-pointer">CONTACT</a></li>
+          </ul>
+
+          <!-- Get an appointment Button -->
+          <button
+            class="bg-getAnAppointment hidden lg:flex flex-row w-fit text-white py-[18px] px-[24px] rounded-full font-roboto hover:bg-greenBody transition-all duration-200"
+          >
+            <span>Get An Appointment</span>
+            <i data-feather="arrow-right" class="text-white w-5 h-5"></i>
+          </button>
         </div>
 
-        <!-- Navigation Bar  -->
-        <nav class="bg-gray-100 text-green_3 font-roboto w-full px-5 relative z-20">
-            <div class="flex items-center justify-between w-full px-0 py-6">
-                <!-- Logo -->
-                <img src="./images/logo.svg" alt="" class="w-[160px] h-[50px] cursor-pointer">
-                
-                <!-- Mobile menu button (hamburger icon) -->
-                <div class="block lg:hidden">
-                    <button id="menu-toggle" class="text-greenBody focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
-                    </button>
+        <!-- Mobile Menu (visible on small screens) -->
+        <ul
+          id="mobile-menu"
+          class="lg:hidden hidden fixed inset-y-0 right-0 w-[80%] bg-purple-950 flex-col space-y-4 p-8 font-roboto font-bold text-[15px] text-white z-50"
+        >
+          <!-- Close Button -->
+          <button
+            id="close-menu"
+            class="self-end text-white focus:outline-none"
+          >
+            <svg
+              class="w-8 h-8"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M6 18L18 6M6 6l12 12"
+              ></path>
+            </svg>
+          </button>
+
+          <li><a href="#" class="cursor-pointer">HOME</a></li>
+          <li><a href="#" class="cursor-pointer">ABOUT US</a></li>
+          <li><a href="#" class="cursor-pointer">STORY</a></li>
+          <li><a href="#" class="cursor-pointer">VISA</a></li>
+          <li><a href="#" class="cursor-pointer">BLOG</a></li>
+          <li><a href="#" class="cursor-pointer">PAGE</a></li>
+          <li><a href="#" class="cursor-pointer">CONTACT</a></li>
+          <button
+            class="bg-getAnAppointment flex w-full text-white py-[18px] px-[24px] rounded-full font-roboto hover:bg-greenBody transition-all duration-200"
+          >
+            Get An Appointment
+          </button>
+        </ul>
+      </nav>
+
+      <!-- Content Box -1 -->
+      <section
+        class="lg:flex relative lg:min-h-[720px] bg-greenBody rounded-[50px] w-[97%] mx-auto"
+      >
+        <!-- Left Side -->
+        <div class="justify-between relative px-8 py-8">
+          <div class="flex flex-col justify-center">
+            <p
+              class="font-roboto font-bold text-white text-[30px] lg:text-[60px] pt-[20px] lg:pt-[150px]"
+            >
+              Visa Made Easy Dreams Made Possible
+            </p>
+
+            <div class="flex items-center mt-4 space-x-4">
+              <button
+                class="relative flex flex-row w-fit text-white py-[16px] px-[30px] font-bold rounded-full font-roboto bg-greenBody border overflow-hidden group"
+              >
+                <span class="relative z-10">Read More</span>
+                <i
+                  data-feather="arrow-right"
+                  class="text-white w-5 h-5 ml-2 relative z-10"
+                ></i>
+
+                <!-- Background hover effect -->
+                <div
+                  class="absolute inset-0 bg-getAnAppointment transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"
+                ></div>
+              </button>
+
+              <div class="relative left-4 gap-3 flex items-center">
+                <div
+                  class="relative play-button opacity-90 rounded-full w-[44px] h-[44px] items-center bg-playButtonZoom"
+                >
+                  <!-- Play button image -->
+                  <button>
+                    <img
+                      src="./images/PlayButonIcon.svg"
+                      alt="Play Button"
+                      class="items-center w-[30px] h-[30px] r mt-[9px] ml-[9px]"
+                    />
+                  </button>
                 </div>
-                
-                <!-- Options (hidden on small screens) -->
-                <ul class="hidden lg:flex space-x-[56px] font-roboto font-bold text-[15px] text-greenBody">
-                    <li><a href="#" class="cursor-pointer">HOME</a></li>
-                    <li><a href="#" class="cursor-pointer">ABOUT US</a></li>
-                    <li><a href="#" class="cursor-pointer">STORY</a></li>
-                    <li><a href="#" class="cursor-pointer">VISA</a></li>
-                    <li><a href="#" class="cursor-pointer">BLOG</a></li>
-                    <li><a href="#" class="cursor-pointer">PAGE</a></li>
-                    <li><a href="#" class="cursor-pointer">CONTACT</a></li>
-                </ul>
-                
-                <!-- Get an appointment Button -->
-                <button class="bg-getAnAppointment hidden lg:flex flex-row w-fit text-white py-[18px] px-[24px] rounded-full font-roboto 
-                    hover:bg-greenBody transition-all duration-200">
-                    <span>Get An Appointment</span>
-                    <i data-feather="arrow-right" class="text-white w-5 h-5"></i>                       
-                </button>
+                <a href="/" class="text-white left-2 font-bold font-roboto"
+                  >Watch Our Videos</a
+                >
+              </div>
             </div>
-            
-            <!-- Mobile Menu (visible on small screens) -->
-            <ul id="mobile-menu" class="lg:hidden hidden fixed inset-y-0  right-0 w-[80%] bg-purple-950  flex-col space-y-4 p-8 font-roboto font-bold text-[15px] text-white z-50">
-                
-                <!-- Close Button -->
-                <button id="close-menu" class="self-end text-white focus:outline-none">
-                    <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-                             
-                <li><a href="#" class="cursor-pointer">HOME</a></li>
-                <li><a href="#" class="cursor-pointer">ABOUT US</a></li>
-                <li><a href="#" class="cursor-pointer">STORY</a></li>
-                <li><a href="#" class="cursor-pointer">VISA</a></li>
-                <li><a href="#" class="cursor-pointer">BLOG</a></li>
-                <li><a href="#" class="cursor-pointer">PAGE</a></li>
-                <li><a href="#" class="cursor-pointer">CONTACT</a></li>
-                <button class="bg-getAnAppointment flex w-full text-white py-[18px] px-[24px] rounded-full font-roboto 
-                    hover:bg-greenBody transition-all duration-200">
-                    Get An Appointment
-                </button>
-            </ul>
-        </nav>
+          </div>
+        </div>
 
-        <!-- Content Box -1 -->
-        <section class=" lg:flex relative lg:min-h-[720px]  bg-greenBody rounded-[50px] w-[97%] mx-auto">
-            <!-- Left Side -->
-             <div class=" justify-between relative px-8 py-8 ">      
-                 <div class="flex flex-col justify-center ">
-                     <p class="font-roboto font-bold text-white text-[30px] lg:text-[60px] pt-[20px] lg:pt-[150px] ">
-                         Visa Made Easy Dreams Made Possible
-                     </p>
-         
-                     <div class="flex items-center mt-4 space-x-4 ">
-                         <button class="relative flex flex-row w-fit text-white py-[16px] px-[30px] font-bold rounded-full font-roboto bg-greenBody border overflow-hidden group">
-                             <span class="relative z-10">Read More</span>
-                             <i data-feather="arrow-right" class="text-white w-5 h-5 ml-2 relative z-10"></i>
-                             
-                             <!-- Background hover effect -->
-                             <div class="absolute inset-0 bg-getAnAppointment transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 ease-out"></div>
-                         </button>
-         
-                         <div class="relative left-4 gap-3 flex items-center">
-                             <div class="relative play-button opacity-90 rounded-full w-[44px] h-[44px] items-center bg-playButtonZoom">
-                                 <!-- Play button image -->
-                                 <button>
-                                     <img src="./images/PlayButonIcon.svg" alt="Play Button" class="items-center w-[30px] h-[30px] r mt-[9px] ml-[9px]">
-                                 </button>
-                                 
-                                 
-                             </div>
-                             <a href="/" class="text-white left-2 font-bold font-roboto">Watch Our Videos</a>
-                             
-                         </div>
-                     </div>
-                 </div>
-             </div>
- 
-             <!-- Right Side -->
-             <div class=" w-full lg:w-[130%] relative overflow-hidden ">
-                <!-- Image container with overlapping images -->
-                <div class=" relative w-full min-h-[450px] lg:h-full mx-auto overflow-hidden"> 
-                    <!-- Front Image -->
-                    <img src="./images/frontImage.png" alt="Image 1"
-                        class="absolute  -bottom-24 left-10 lg:top-9 lg:right-40 w-[350px] h-[484px] lg:w-[500px] lg:h-[684px] image-1 object-cover"> 
-                    
-                    <!-- Back Images -->
-                    <img src="./images/backImage.png" alt="Image 2"
-                        class="absolute  -bottom-32 left-4 lg:top-64 lg:right-10 w-[440px] h-[440px] lg:w-[600px] lg:h-[600px] image-2  object-cover filter saturate-100 brightness-90 contrast-70" style="clip-path: inset(0 0 10% 0);"> 
-                    
-                    <img src="./images/backImage2.png" alt="Image 3"
-                        class="absolute  -bottom-24 right-[50px] lg:top-36 lg:-right-0 w-[400px] h-[510px] lg:w-[400px] lg:h-[610px] image-3  object-cover filter saturate-150 brightness-110 contrast-120"> 
-                </div>
+        <!-- Right Side -->
+        <div class="w-full lg:w-[130%] relative overflow-hidden">
+          <!-- Image container with overlapping images -->
+          <div
+            class="relative w-full min-h-[450px] lg:h-full mx-auto overflow-hidden"
+          >
+            <!-- Front Image -->
+            <img
+              src="./images/frontImage.png"
+              alt="Image 1"
+              class="absolute -bottom-24 left-10 lg:top-9 lg:right-40 w-[350px] h-[484px] lg:w-[500px] lg:h-[684px] image-1 object-cover"
+            />
+
+            <!-- Back Images -->
+            <img
+              src="./images/backImage.png"
+              alt="Image 2"
+              class="absolute -bottom-32 left-4 lg:top-64 lg:right-10 w-[440px] h-[440px] lg:w-[600px] lg:h-[600px] image-2 object-cover filter saturate-100 brightness-90 contrast-70"
+              style="clip-path: inset(0 0 10% 0)"
+            />
+
+            <img
+              src="./images/backImage2.png"
+              alt="Image 3"
+              class="absolute -bottom-24 right-[50px] lg:top-36 lg:-right-0 w-[400px] h-[510px] lg:w-[400px] lg:h-[610px] image-3 object-cover filter saturate-150 brightness-110 contrast-120"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Card Show -->
+      <section
+        class="grid grid-cols-1 lg:grid-cols-3 gap-12 w-[90%] mx-auto pt-16 min-h-[500px]"
+      >
+        <!-- Box 1 -->
+
+        <div
+          class="z-[100] border border-gray-300 relative w-full h-full flex flex-col pt-12 pl-8 py-6 pr-8 rounded-[20px]"
+        >
+          <div
+            class="relative flex flex-col rounded-full bg-getAnAppointment w-[100px] h-[100px] items-center justify-center overflow-hidden"
+          >
+            <img
+              src="./images/Card-1.svg"
+              alt=""
+              class="w-[50px] h-[50px] shake-image transition-transform duration-500 ease-in-out"
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <h2 class="font-roboto font-bold text-greenBody text-[22px] pt-9">
+              Food and Wine Tours
+            </h2>
+            <p
+              class="font-roboto text-gray-500 leading-[1.7] text-justify pt-5"
+            >
+              Dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nun
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+              amet rcus nunc. Duis egestas ac
+            </p>
+          </div>
+        </div>
+
+        <!-- Box 2 -->
+        <div
+          class="z-[100] border border-gray-300 relative w-full h-full flex flex-col pt-12 pl-8 py-6 pr-8 rounded-[20px]"
+        >
+          <div
+            class="relative flex flex-col rounded-full bg-getAnAppointment w-[100px] h-[100px] items-center justify-center overflow-hidden"
+          >
+            <img
+              src="./images/card-2.svg"
+              alt=""
+              class="w-[50px] h-[50px] shake-image transition-transform duration-500 ease-in-out"
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <h2 class="font-roboto font-bold text-greenBody text-[22px] pt-9">
+              Travel Opportunities
+            </h2>
+            <p
+              class="font-roboto text-gray-500 leading-[1.7] text-justify pt-5"
+            >
+              Dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nun
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+              amet rcus nunc. Duis egestas ac
+            </p>
+          </div>
+        </div>
+
+        <!-- Box 3 -->
+        <div
+          class="z-[100] border border-gray-300 relative w-full h-full flex flex-col pt-12 pl-8 py-6 pr-8 rounded-[20px]"
+        >
+          <div
+            class="relative flex flex-col rounded-full bg-getAnAppointment w-[100px] h-[100px] items-center justify-center overflow-hidden"
+          >
+            <img
+              src="./images/Card-3.svg"
+              alt=""
+              class="w-[50px] h-[50px] shake-image transition-transform duration-500 ease-in-out"
+            />
+          </div>
+
+          <div class="flex flex-col">
+            <h2 class="font-roboto font-bold text-greenBody text-[22px] pt-9">
+              Solo Travel Planning
+            </h2>
+            <p
+              class="font-roboto text-gray-500 leading-[1.7] text-justify pt-5"
+            >
+              Dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nun
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit
+              amet rcus nunc. Duis egestas ac
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <!-- Why Choose us  -->
+
+      <section
+        class="lg:flex relative w-[93%] mx-auto pt-24 gap-16 overflow-hidden"
+      >
+        <!-- left section -->
+        <div class="lg:flex flex-row relative min-h-[500px] gap-10 w-[60%]">
+          <!-- left side -->
+          <div class="flex flex-col relative">
+            <!-- left image -->
+            <div class="relative inline-block">
+              <!-- Border Div -->
+              <div
+                class="absolute top-3 left-3 border-[1px] border-getAnAppointment rounded-[20px] pointer-events-none w-full h-full z-10"
+              ></div>
+
+              <img
+                src="./images/choose-us-left-img.png"
+                alt=""
+                class="relative z-0 rounded-[20px]"
+              />
             </div>
-        </section>
 
-
-        <!-- Card Show -->
-        <section class=" grid grid-cols-1 lg:grid-cols-3 gap-12 w-[90%] mx-auto pt-16 min-h-[500px]">
-            <!-- Box 1 -->
-
-            <div class="z-[100] border-2 border-gray-300 relative w-full h-full flex flex-col  pt-12 pl-8 py-6 pr-8 rounded-[20px]">
-                <div class="relative flex flex-col rounded-full bg-getAnAppointment w-[100px] h-[100px] items-center justify-center overflow-hidden">
-                    <img src="./images/Card-1.svg" alt="" class="w-[50px] h-[50px] shake-image transition-transform duration-500 ease-in-out">
-                </div>
-                
-                
-                
-                <div class="flex flex-col">
-                    <h2 class="font-roboto font-bold text-greenBody text-[22px] pt-9">Food and Wine Tours</h2>
-                    <p class="font-roboto text-gray-500 leading-[1.7] text-justify pt-5">Dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nun Lorem ipsum
-                        dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nunc. Duis egestas ac</p>
-                </div>
-                
-
+            <div class="flex justify-center items-center pt-10 mb-10">
+              <img
+                src="./images/choose-us-circle-img.png"
+                alt=""
+                class="rotate-animation"
+              />
             </div>
+          </div>
 
-            <!-- Box 2 -->
-            <div class="z-[100] border-2 border-gray-300 relative w-full h-full flex flex-col  pt-12 pl-8 py-6 pr-8 rounded-[20px]">
-                <div class="relative flex flex-col rounded-full bg-getAnAppointment w-[100px] h-[100px] items-center justify-center overflow-hidden">
-                    <img src="./images/card-2.svg" alt="" class="w-[50px] h-[50px] shake-image transition-transform duration-500 ease-in-out">
-                </div>
-                
-                <div class="flex flex-col">
-                    <h2 class="font-roboto font-bold text-greenBody text-[22px] pt-9">Travel Opportunities</h2>
-                    <p class="font-roboto text-gray-500 leading-[1.7] text-justify pt-5">Dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nun Lorem ipsum
-                        dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nunc. Duis egestas ac</p>
-                </div>
-                
-
-            </div>
-
-            <!-- Box 3 -->
-            <div class="z-[100] border-2 border-gray-300 relative w-full h-full flex flex-col  pt-12 pl-8 py-6 pr-8 rounded-[20px]">
-                <div class="relative flex flex-col rounded-full bg-getAnAppointment w-[100px] h-[100px] items-center justify-center overflow-hidden">
-                    <img src="./images/Card-3.svg" alt="" class="w-[50px] h-[50px] shake-image transition-transform duration-500 ease-in-out">
-                </div>
-                
-                <div class="flex flex-col">
-                    <h2 class="font-roboto font-bold text-greenBody text-[22px] pt-9">Solo Travel Planning</h2>
-                    <p class="font-roboto text-gray-500 leading-[1.7] text-justify pt-5">Dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nun Lorem ipsum
-                        dolor sit amet, consectetur adipiscing elit. Sed sit amet rcus nunc. Duis egestas ac</p>
-                </div>
-                
-
-            </div>
-        </section>
-
-
-
-
-        <!-- Why Choose us card -->
-
-        <section class=" lg:flex relative w-[93%] mx-auto pt-24  gap-16 overflow-hidden ">
-            <!-- left section -->
-            <div class="lg:flex flex-row relative min-h-[500px] gap-10 w-[60%]">
-                <!-- left side -->
-                <div class="flex flex-col relative">
-                    <!-- left image -->
-                    <div class="relative inline-block">
-                        <!-- Border Div -->
-                        <div class="absolute top-3 left-3 border-[1px] border-getAnAppointment rounded-[20px] pointer-events-none w-full h-full z-10"></div>
-                    
-                        <img src="./images/choose-us-left-img.png" alt="" class="relative z-0 rounded-[20px]">
+          <!-- Right side -->
+          <div class="flex flex-col min-h-[500px]">
+            <!-- Left image right portion -->
+            <!-- Box -->
+            <div class="flex flex-col h-screen w-full gap-8 overflow-hidden">
+              <div
+                class="h-[20%] bg-button rounded-[20px] flex flex-row justify-center items-center w-full pl-10 pr-12 pt-12 pb-12"
+              >
+                <!-- Experience Counter -->
+                <div class="flex flex-row items-center gap-6 overflow-hidden">
+                  <div class="number-container relative">
+                    <div id="tensContainer" class="digit-container">
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >0</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >1</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >2</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >3</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >4</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >5</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >6</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >7</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >8</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >9</span
+                      >
                     </div>
-    
-                    <div class="flex justify-center items-center pt-10 mb-10">
-                        <img src="./images/choose-us-circle-img.png" alt=""
-                            class="rotate-animation"> 
+                    <div id="unitsContainer" class="digit-container">
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >0</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >1</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >2</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >3</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >4</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >5</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >6</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >7</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >8</span
+                      >
+                      <span
+                        class="digit font-roboto text-[70px] font-bold text-white"
+                        >9</span
+                      >
                     </div>
-
+                  </div>
+                  <div class="flex flex-col relative">
+                    <p class="text-white font-roboto text-[18px]">Years Of</p>
+                    <span class="text-white font-roboto text-[18px]"
+                      >Experience</span
+                    >
+                  </div>
                 </div>
+              </div>
+              <!-- image below box -->
+              <div class="flex-grow relative h-[80%]">
+                <img
+                  src="./images/choose-us-right-img.png"
+                  alt="Experience Image"
+                  class="absolute inset-0 rounded-[20px]"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
 
-                <!-- Right side -->
-                <div class="flex flex-col min-h-[500px]">
-                    <!-- Left image right portion -->
-                    <!-- Box -->
-                    <div class="flex flex-col h-screen w-full gap-8 overflow-hidden">
-                        <div class=" h-[20%] bg-button rounded-[20px] flex flex-row justify-center items-center w-full pl-10 pr-12 pt-12 pb-12">
-                            
-                            <!-- Experience Counter -->
-                            <div class="flex flex-row items-center gap-6 overflow-hidden">
-                                <div class="number-container relative">
-                                    <div id="tensContainer" class="digit-container">
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">0</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">1</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">2</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">3</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">4</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">5</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">6</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">7</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">8</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">9</span>
-                                    </div>
-                                    <div id="unitsContainer" class="digit-container">
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">0</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">1</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">2</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">3</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">4</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">5</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">6</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">7</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">8</span>
-                                        <span class="digit font-roboto text-[70px] font-bold text-white">9</span>
-                                    </div>
-                                </div>
-                                <div class="flex flex-col relative">
-                                    <p class="text-white font-roboto text-[18px]">Years Of</p>
-                                    <span class="text-white font-roboto text-[18px]">Experience</span>
-                                </div>
-                            </div>
-                            
-                        </div>
-                        <!-- image below box -->
-                        <div class="flex-grow relative h-[80%]">
-                            <img src="./images/choose-us-right-img.png" alt="Experience Image" class="absolute inset-0  rounded-[20px]">
-                        </div>
-                    </div>
+        <!-- Right section -->
+        <div class="relative min-h-[500px] lg:w-[60%]">
+          <div class="flex flex-row gap-2">
+            <img
+              src="./images/card-2.3.svg"
+              alt=""
+              class="relative w-[25px] h-[25px]"
+            />
+            <h2
+              class="font-roboto font-bold text-[15px] text-greenBody items-center justify-center"
+            >
+              WHY CHOOSE US
+            </h2>
+          </div>
+          <div>
+            <!-- writting -->
+            <h2
+              class="font-roboto font-bold text-[25px] w-fu lg:text-[45px] text-greenBody"
+            >
+              Where Wanderlust Meets Dream Destinations
+            </h2>
+            <p class="font-roboto text-gray-500 leading-[28px]">
+              Et purus duis sollicitudin dignissim habitant. Egestas nulla quis
+              venenatis cras sed eu massa Et purus duis sollicitudin dignissim
+              habitant. Egestas nulla quis venenatis cras sed eu massa Et purus
+              duis sollicitudin dignissim habitant. Egestas nulla
+            </p>
+          </div>
+
+          <!-- 2 cards -->
+
+          <div class="lg:flex flex-row gap-4 ml-4">
+            <!-- Box-1 -->
+            <div
+              class="z-[100] border border-gray-300 relative pt-8 pl-8 py-6 pr-8 rounded-[20px] mt-7"
+            >
+              <div class="flex flex-row gap-2">
+                <div
+                  class="relative flex rounded-full bg-getAnAppointment w-[60px] h-[60px] items-center justify-center overflow-hidden"
+                >
+                  <img
+                    src="./images/image (5).svg"
+                    alt=""
+                    class="w-[40px] h-[40px] shake-image transition-transform duration-500 ease-in-out"
+                  />
                 </div>
-                
+                <h2
+                  class="flex font-roboto font-bold text-greenBody text-[20px] items-center"
+                >
+                  Passport Plus
+                </h2>
+              </div>
+
+              <div class="flex flex-col mt-5 justify-between gap-4">
+                <div class="flex gap-2 items-center">
+                  <img
+                    src="./images/image (6).svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-600 text-[15px]">
+                    Beyond Border Immigration
+                  </p>
+                </div>
+                <div class="flex gap-2">
+                  <img
+                    src="./images/image (6).svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-600 text-[15px]">
+                    Worldwide Visa Assistance
+                  </p>
+                </div>
+              </div>
             </div>
 
-
-            <!-- Right section -->
-            <div class="relative min-h-[500px] lg:w-[60%]">
-                <div class="flex flex-row gap-2">
-                    <img src="./images/card-2.3.svg" alt=""
-                    class="relative w-[25px] h-[25px]">
-                    <h2 class="font-roboto font-bold text-[15px] text-greenBody items-center justify-center">WHY CHOOSE US</h2>
+            <!-- Box-2 -->
+            <div
+              class="z-[100] border border-gray-300 relative pt-8 pl-8 py-6 pr-8 rounded-[20px] mt-7"
+            >
+              <div class="flex flex-row gap-2">
+                <div
+                  class="relative flex rounded-full bg-getAnAppointment w-[60px] h-[60px] items-center justify-center overflow-hidden"
+                >
+                  <img
+                    src="./images/image (7).svg"
+                    alt=""
+                    class="w-[40px] h-[40px] shake-image transition-transform duration-500 ease-in-out"
+                  />
                 </div>
+                <h2
+                  class="flex font-roboto font-bold text-greenBody text-[20px] items-center"
+                >
+                  Global Entry
+                </h2>
+              </div>
+
+              <div class="flex flex-col mt-5 justify-between gap-4">
+                <div class="flex gap-2 items-center">
+                  <img
+                    src="./images/image (6).svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-600 text-[15px]">
+                    GlobeTrot Visa Services
+                  </p>
+                </div>
+                <div class="flex gap-2">
+                  <img
+                    src="./images/image (6).svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-600 text-[15px]">
+                    Infinity Visa Solutions
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!--  button & contact -->
+
+          <div class="flex flex-row gap-5 mt-7 ml-3">
+            <!-- button Read More -->
+
+            <div class="w-[70%] lg:w-[50%] h-full">
+              <button
+                class="flex flex-row w-fit lg:w-fit text-greenBody py-[18px] px-[28px] rounded-full border border-getAnAppointment hover:bg-greenBody hover:text-white transition-all duration-200 group"
+              >
+                <span class="font-roboto text-[15px] lg:text-[17px]"
+                  >Read More</span
+                >
+                <i
+                  data-feather="arrow-right"
+                  class="text-greenBody w-7 h-6 pl-2 font-bold group-hover:text-white"
+                ></i>
+              </button>
+            </div>
+
+            <!-- Need Help -->
+            <div class="flex flex-row gap-4 w-full h-full items-center mt-1">
+              <div
+                class="relative flex flex-col rounded-full bg-button w-[52px] h-[52px] items-center justify-center overflow-hidden"
+              >
+                <img
+                  src="./images/icons8-phone-30.png"
+                  alt=""
+                  class="w-[20px] h-[20px] shake-image transition-transform duration-500 ease-in-out"
+                />
+              </div>
+              <div class="flex flex-col justify-between">
+                <p class="font-roboto text-greenBody">Need help?</p>
+                <h2 class="font-roboto text-greenBody font-bold">
+                  (808)555-0111
+                </h2>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Scrolling Container -->
+
+      <section
+        class="flex w-[88%] h-[50px] mx-auto items-center justify-between mt-8"
+      >
+        <div class="scroll-wrapper mx-auto overflow-hidden">
+          <div class="flex scroll-container gap-32 h-full">
+            <!-- First set of images -->
+            <img
+              src="./images/black-brands1.png"
+              alt="Image 1"
+              class="scroll-image w-[171px] h-[49px]"
+            />
+            <img
+              src="./images/black-brands2.png"
+              alt="Image 2"
+              class="scroll-image w-[108px] h-[49px]"
+            />
+            <img
+              src="./images/black-brands3.png"
+              alt="Image 3"
+              class="scroll-image w-[114px] h-[49px]"
+            />
+            <img
+              src="./images/black-brands4.png"
+              alt="Image 4"
+              class="scroll-image w-[127px] h-[49px]"
+            />
+            <img
+              src="./images/black-brands5.png"
+              alt="Image 5"
+              class="scroll-image w-[144px] h-[49px]"
+            />
+
+            <!-- Duplicate set of images for seamless looping -->
+            <img
+              src="./images/black-brands1.png"
+              alt="Image 1"
+              class="scroll-image w-[171px] h-[49px]"
+            />
+            <img
+              src="./images/black-brands2.png"
+              alt="Image 2"
+              class="scroll-image w-[108px] h-[49px]"
+            />
+            <img
+              src="./images/black-brands3.png"
+              alt="Image 3"
+              class="scroll-image w-[114px] h-[49px]"
+            />
+            <img
+              src="./images/black-brands4.png"
+              alt="Image 4"
+              class="scroll-image w-[127px] h-[49px]"
+            />
+            <img
+              src="./images/black-brands5.png"
+              alt="Image 5"
+              class="scroll-image w-[144px] h-[49px]"
+            />
+          </div>
+        </div>
+      </section>
+
+      <!-- Our Countries -->
+
+      <section class="bg-greenBody min-h-[850px] mx-auto mt-20 px-6">
+        <!-- Div 0 -->
+        <div class="relative mx-auto">
+          <!-- Div 1 -->
+          <div class="flex flex-row gap-2 pt-[116px]">
+            <img
+              src="./images/card-2.svg"
+              alt=""
+              class="relative w-[25px] h-[25px]"
+            />
+            <h2
+              class="font-roboto font-bold text-[15px] text-white items-center justify-center pt-1"
+            >
+              OUR COUNTRIES
+            </h2>
+          </div>
+
+          <!-- Div 2 -->
+
+          <div class="lg:flex">
+            <h2
+              class="font-roboto font-bold text-white text-[30px] lg:text-[52px]"
+            >
+              Making Memories Around World Unforgettable
+            </h2>
+
+            <!-- Next previous button -->
+
+            <div
+              class="flex w-[80%] h-[20%] lg:justify-end pt-5 lg:pt-24 gap-4"
+            >
+              <button
+                class="flex items-center justify-center w-16 h-16 rounded-full border border-white hover:bg-button transition-all duration-200"
+              >
+                <i data-feather="arrow-left" class="text-white w-6 h-6"></i>
+              </button>
+
+              <button
+                class="flex items-center justify-center w-16 h-16 rounded-full border border-white hover:bg-button transition-all duration-200"
+              >
+                <i data-feather="arrow-right" class="text-white w-6 h-6"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Div 3 -->
+          <!-- 5 Cards -->
+
+          <div class="lg:flex items-center justify-center pt-6">
+            <!-- Card 1 -->
+            <!-- Parent Card Content -->
+            <div class="parent-card relative">
+              <!-- Image inside parent card -->
+              <img
+                src="./images/projact-img1.png"
+                alt="Card Image"
+                class="absolute inset-0 z-0"
+              />
+
+              <!-- Logo in the top-right corner -->
+              <div class="logo">
+                <img src="./images/projact-small-img1.png" alt="Logo" />
+              </div>
+
+              <!-- Child Card -->
+              <div class="child-card flip-card">
+                <div
+                  class="front flex-col p-4 flex justify-start h-full bg-getAnAppointment text-white rounded-lg shadow-md"
+                >
+                  <h2 class="text-xl font-bold pt-2 text-left">Working Visa</h2>
+                  <p class="pb-3 text-[16px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor
+                  </p>
+
+                  <button
+                    class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px] rounded-full font-roboto border border-white hover:bg-greenBody transition-all duration-200"
+                  >
+                    <span>Apply Now</span>
+                    <i
+                      data-feather="arrow-right"
+                      class="text-white w-5 h-5"
+                    ></i>
+                  </button>
+                </div>
+                <div class="back">
+                  <p>Back Side</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 2 -->
+            <!-- Parent Card Content -->
+            <div class="parent-card relative">
+              <!-- Image inside parent card -->
+              <img
+                src="./images/projact-img2.png"
+                alt="Card Image"
+                class="absolute inset-0 z-0"
+              />
+
+              <!-- Logo in the top-right corner -->
+              <div class="logo">
+                <img src="./images/projact-small-img2.png" alt="Logo" />
+              </div>
+
+              <!-- Child Card -->
+              <div class="child-card flip-card">
+                <div
+                  class="front flex-col p-4 flex justify-start h-full bg-getAnAppointment text-white rounded-lg shadow-md"
+                >
+                  <h2 class="text-xl font-bold pt-2 text-left">Working Visa</h2>
+                  <p class="pb-3 text-[16px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor
+                  </p>
+
+                  <button
+                    class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px] rounded-full font-roboto border border-white hover:bg-greenBody transition-all duration-200"
+                  >
+                    <span>Apply Now</span>
+                    <i
+                      data-feather="arrow-right"
+                      class="text-white w-5 h-5"
+                    ></i>
+                  </button>
+                </div>
+                <div class="back">
+                  <p>Back Side</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 3 -->
+            <!-- Parent Card Content -->
+            <div class="parent-card relative">
+              <!-- Image inside parent card -->
+              <img
+                src="./images/projact-img3.png"
+                alt="Card Image"
+                class="absolute inset-0 z-0"
+              />
+
+              <!-- Logo in the top-right corner -->
+              <div class="logo">
+                <img src="./images/projact-small-img3.png" alt="Logo" />
+              </div>
+
+              <!-- Child Card -->
+              <div class="child-card flip-card">
+                <div
+                  class="front flex-col p-4 flex justify-start h-full bg-getAnAppointment text-white rounded-lg shadow-md"
+                >
+                  <h2 class="text-xl font-bold pt-2 text-left">Working Visa</h2>
+                  <p class="pb-3 text-[16px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor
+                  </p>
+
+                  <button
+                    class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px] rounded-full font-roboto border border-white hover:bg-greenBody transition-all duration-200"
+                  >
+                    <span>Apply Now</span>
+                    <i
+                      data-feather="arrow-right"
+                      class="text-white w-5 h-5"
+                    ></i>
+                  </button>
+                </div>
+                <div class="back">
+                  <p>Back Side</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 4 -->
+            <!-- Parent Card Content -->
+            <div class="parent-card relative">
+              <!-- Image inside parent card -->
+              <img
+                src="./images/projact-img4.png"
+                alt="Card Image"
+                class="absolute inset-0 z-0"
+              />
+
+              <!-- Logo in the top-right corner -->
+              <div class="logo">
+                <img src="./images/projact-small-img4.png" alt="Logo" />
+              </div>
+
+              <!-- Child Card -->
+              <div class="child-card flip-card">
+                <div
+                  class="front flex-col p-4 flex justify-start h-full bg-getAnAppointment text-white rounded-lg shadow-md"
+                >
+                  <h2 class="text-xl font-bold pt-2 text-left">Working Visa</h2>
+                  <p class="pb-3 text-[16px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor
+                  </p>
+
+                  <button
+                    class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px] rounded-full font-roboto border border-white hover:bg-greenBody transition-all duration-200"
+                  >
+                    <span>Apply Now</span>
+                    <i
+                      data-feather="arrow-right"
+                      class="text-white w-5 h-5"
+                    ></i>
+                  </button>
+                </div>
+                <div class="back">
+                  <p>Back Side</p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Card 5 -->
+            <!-- Parent Card Content -->
+            <div class="parent-card relative">
+              <!-- Image inside parent card -->
+              <img
+                src="./images/projact-img5.png"
+                alt="Card Image"
+                class="absolute inset-0 z-0"
+              />
+
+              <!-- Logo in the top-right corner -->
+              <div class="logo">
+                <img src="./images/projact-small-img5.png" alt="Logo" />
+              </div>
+
+              <!-- Child Card -->
+              <div class="child-card flip-card">
+                <div
+                  class="front flex-col p-4 flex justify-start h-full bg-getAnAppointment text-white rounded-lg shadow-md"
+                >
+                  <h2 class="text-xl font-bold pt-2 text-left">Working Visa</h2>
+                  <p class="pb-3 text-[16px]">
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                    do eiusmod tempor
+                  </p>
+
+                  <button
+                    class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px] rounded-full font-roboto border border-white hover:bg-greenBody transition-all duration-200"
+                  >
+                    <span>Apply Now</span>
+                    <i
+                      data-feather="arrow-right"
+                      class="text-white w-5 h-5"
+                    ></i>
+                  </button>
+                </div>
+                <div class="back">
+                  <p>Back Side</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Visa section -->
+
+      <section class="min-h-[400px]">
+        <div>
+          <!-- top header -->
+          <div class="flex flex-col items-center justify-center pt-24">
+            <div class="flex flex-row items-center justify-center gap-1">
+              <img src="./images/card-2.3.svg" alt="" />
+              <h2 class="font-roboto font-bold text-greenBody text-[16px]">
+                VISA CATEGORY
+              </h2>
+            </div>
+            <div>
+              <h2
+                class="font-roboto font-bold text-greenBody text-[50px] text-center leading-tight"
+              >
+                Seeking Adventure Thrills <br />and Excitement Await
+              </h2>
+            </div>
+          </div>
+
+          <!-- 4 boxes -->
+          <div class="grid grid-cols-2 grid-rows-2 gap-x-6 p-6">
+            <!-- Box-1 -->
+            <div
+              class="z-[100] border border-gray-300 relative p-5 rounded-[20px] mt-7 group"
+            >
+              <div class="flex flex-row gap-x-14">
+                <!-- left side image -->
                 <div>
-                    <!-- writting -->
-                    <h2 class="font-roboto font-bold text-[25px] w-fu lg:text-[45px] text-greenBody ">Where Wanderlust Meets Dream Destinations</h2>
-                    <p class="font-roboto text-gray-500 leading-[28px]">Et purus duis sollicitudin dignissim habitant. Egestas nulla quis venenatis cras sed eu massa 
-                        Et purus duis sollicitudin dignissim habitant. Egestas nulla quis venenatis cras sed eu massa 
-                        Et purus duis sollicitudin dignissim habitant. Egestas nulla</p>
-
+                  <img
+                    src="./images/visa-card-img1.png"
+                    alt="Business Visa Image"
+                    width="600px"
+                    height="600px"
+                    class="rounded-[20px] transition-transform duration-700 ease-in-out group-hover:scale-105"
+                  />
                 </div>
-
-                <!-- 2 cards -->
-
-                <div class="lg:flex flex-row gap-4 ml-4">
-
-                        <!-- Box-1 -->
-                    <div class=" z-[100] border border-gray-300 relative pt-8 pl-8 py-6 pr-8 rounded-[20px] mt-7 ">
-                        
-
-                        <div class="flex flex-row gap-2 ">
-                            <div class="relative flex rounded-full bg-getAnAppointment w-[60px] h-[60px] items-center justify-center overflow-hidden">
-                                <img src="./images/image (5).svg" alt="" class="w-[40px] h-[40px] shake-image transition-transform duration-500 ease-in-out">
-                            </div>
-                            <h2 class=" flex font-roboto font-bold text-greenBody text-[20px] items-center">Passport Plus</h2>
-                        </div>
-                        
-                        <div class="flex flex-col mt-5 justify-between gap-4">
-                            
-                            <div class="flex gap-2 items-center ">
-                                <img src="./images/image (6).svg" alt=""
-                                class="relative w-[15px] h-[15px]">
-                                <p class="font-roboto text-gray-600 text-[15px]">Beyond Border Immigration</p>
-                            </div>
-                            <div class="flex gap-2">
-                                <img src="./images/image (6).svg" alt=""
-                                class="relative w-[15px] h-[15px]">
-                                <p class="font-roboto text-gray-600 text-[15px]">Worldwide Visa Assistance</p>
-                            </div>
-
-                        </div>
-                        
-            
-                    </div>
-
-                        <!-- Box-2 -->
-                    <div class="z-[100] border border-gray-300 relative pt-8 pl-8 py-6 pr-8 rounded-[20px] mt-7">
-                        
-
-                        <div class="flex flex-row gap-2 ">
-                            <div class="relative flex rounded-full bg-getAnAppointment w-[60px] h-[60px] items-center justify-center overflow-hidden">
-                                <img src="./images/image (7).svg" alt="" class="w-[40px] h-[40px] shake-image transition-transform duration-500 ease-in-out">
-                            </div>
-                            <h2 class=" flex font-roboto font-bold text-greenBody text-[20px] items-center">Global Entry</h2>
-                        </div>
-                        
-                        <div class="flex flex-col mt-5 justify-between gap-4">
-                            
-                            <div class="flex gap-2 items-center ">
-                                <img src="./images/image (6).svg" alt=""
-                                class="relative w-[15px] h-[15px]">
-                                <p class="font-roboto text-gray-600 text-[15px]">GlobeTrot Visa Services</p>
-                            </div>
-                            <div class="flex gap-2">
-                                <img src="./images/image (6).svg" alt=""
-                                class="relative w-[15px] h-[15px]">
-                                <p class="font-roboto text-gray-600 text-[15px]">Infinity Visa Solutions</p>
-                            </div>
-                        </div>        
-                    </div>
-
-                </div> 
-
-                <!--  button & contact -->
-
-                <div class="flex flex-row gap-5 mt-7 ml-3">
-                    <!-- button Read More -->
-                    
-                    <div class=" w-[70%] lg:w-[50%] h-full">
-                        <button class=" flex flex-row w-fit lg:w-fit text-greenBody py-[18px] px-[28px] rounded-full border border-getAnAppointment  
-                            hover:bg-greenBody hover:text-white transition-all duration-200 group">
-                            <span class=" font-roboto text-[15px] lg:text-[17px]">Read More</span>
-                            <i data-feather="arrow-right" class="text-greenBody w-7 h-6 pl-2 font-bold group-hover:text-white"></i>                       
-                        </button>
-                    </div>
-                    
-
-                    <!-- Need Help -->
-                    <div class="flex flex-row gap-4 w-full h-full items-center mt-1"> 
-                        <div class="relative flex flex-col rounded-full bg-button w-[52px] h-[52px] items-center justify-center overflow-hidden">
-                            <img src="./images/icons8-phone-30.png" alt="" class="w-[20px] h-[20px] shake-image transition-transform duration-500 ease-in-out">
-                        </div>
-                        <div class="flex flex-col justify-between">
-                            <p class="font-roboto text-greenBody ">Need help?</p>
-                            <h2 class="font-roboto text-greenBody font-bold">(808)555-0111</h2>
-                        </div>
-                        
-                    </div>
+                <!-- right side content -->
+                <div class="flex flex-col space-y-6">
+                  <h2 class="font-roboto font-bold text-greenBody text-[24px]">
+                    Business Visa
+                  </h2>
+                  <p class="font-roboto text-gray-500 text-[18px] leading-6">
+                    Et purus duis sollicitudin dignissim habitant. Egestas nulla
+                    quis the venenatis cras sed eu
+                  </p>
+                  <div class="flex flex-row items-stretch justify-between">
+                    <button
+                      class="flex flex-row items-center justify-center w-fit lg:w-fit py-[18px] px-[18px] rounded-[16px] border border-getAnAppointment group hover:bg-getAnAppointment transition-all duration-700 ease-in-out"
+                    >
+                      <i
+                        data-feather="arrow-right"
+                        class="text-getAnAppointment w-5 h-5 font-bold transition-transform duration-700 -rotate-45 hover:rotate-0 hover:text-white"
+                      ></i>
+                    </button>
+                    <img src="./images/visa-card-right-icon1.png" alt="" />
+                  </div>
                 </div>
-
-
-            </div>
-        </section>
-
-
-
-
-        <!-- Scrolling Container -->
-
-        <section class="flex w-[88%] h-[50px] mx-auto items-center justify-between mt-8">
-        
-            <div class="scroll-wrapper  mx-auto overflow-hidden">
-                <div class="flex scroll-container gap-32 h-full">
-                    <!-- First set of images -->
-                    <img src="./images/black-brands1.png" alt="Image 1" class="scroll-image w-[171px] h-[49px]">
-                    <img src="./images/black-brands2.png" alt="Image 2" class="scroll-image w-[108px] h-[49px]">
-                    <img src="./images/black-brands3.png" alt="Image 3" class="scroll-image w-[114px] h-[49px]">
-                    <img src="./images/black-brands4.png" alt="Image 4" class="scroll-image w-[127px] h-[49px]">
-                    <img src="./images/black-brands5.png" alt="Image 5" class="scroll-image w-[144px] h-[49px]">
-            
-                    <!-- Duplicate set of images for seamless looping -->
-                    <img src="./images/black-brands1.png" alt="Image 1" class="scroll-image w-[171px] h-[49px]">
-                    <img src="./images/black-brands2.png" alt="Image 2" class="scroll-image w-[108px] h-[49px]">
-                    <img src="./images/black-brands3.png" alt="Image 3" class="scroll-image w-[114px] h-[49px]">
-                    <img src="./images/black-brands4.png" alt="Image 4" class="scroll-image w-[127px] h-[49px]">
-                    <img src="./images/black-brands5.png" alt="Image 5" class="scroll-image w-[144px] h-[49px]">
-                </div>
-            </div>
-            
-            
-            
-            
-
-        </section>
-        
-
-        <!-- Our Countries -->
-
-        <section class=" bg-greenBody min-h-[800px] mx-auto mt-20">
-            
-            <!-- Div 0 -->
-            <div class=" relative w-[90%] mx-auto ">
-                    <!-- Div 1 -->
-                    <div class="flex flex-row gap-2 pt-[116px] ">
-                        <img src="./images/card-2.svg" alt=""
-                        class="relative w-[25px] h-[25px]">
-                        <h2 class="font-roboto font-bold text-[15px] text-white items-center justify-center pt-1">OUR COUNTRIES</h2>
-                    </div>
-
-                    <!-- Div 2 -->
-
-                    <div class="lg:flex ">
-                        <h2 class="font-roboto font-bold text-white text-[30px] lg:text-[52px]">Making Memories Around
-                            World Unforgettable</h2>
-
-                        <!-- Next previous button -->
-
-                        <div class="flex w-[80%] h-[20%] lg:justify-end pt-5 lg:pt-24 gap-4">
-
-                            <button class="flex items-center justify-center w-16 h-16 rounded-full border border-white 
-                                hover:bg-button transition-all duration-200">
-                                <i data-feather="arrow-left" class="text-white w-6 h-6"></i>                       
-                            </button>
-                
-
-                            <button class="flex items-center justify-center w-16 h-16 rounded-full border border-white 
-                                hover:bg-button transition-all duration-200">
-                                <i data-feather="arrow-right" class="text-white w-6 h-6"></i>                       
-                            </button>
-                        
-                    </div>
-                </div>
-
-                <!-- Div 3 -->
-                    <!-- 5 Cards -->
-                        
-                <div class=" lg:flex items-center justify-center pt-6">
-
-                    <!-- Card 1 -->
-                        <!-- Parent Card Content --> 
-                    <div class="parent-card relative">
-                        <!-- Image inside parent card -->
-                            <img src="./images/projact-img1.png" alt="Card Image" class="absolute inset-0 z-0 ">
-                        
-
-                        <!-- Logo in the top-right corner -->
-                        <div class="logo">
-                            <img src="./images/projact-small-img1.png" alt="Logo">
-                        </div>
-                
-                        <!-- Child Card -->
-                        <div class="child-card flip-card">
-                            <div class=" front flex-col p-4 flex  justify-start h-full bg-getAnAppointment text-white rounded-lg shadow-md">
-                                <h2 class="text-xl font-bold pt-2 text-left">Working Visa</h2>
-                                <p class="pb-3 text-[16px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                    sed do eiusmod tempor </p>
-
-                                <button class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px]  rounded-full font-roboto  border border-white
-                                    hover:bg-greenBody transition-all duration-200">
-                                    <span>Apply Now</span>
-                                    <i data-feather="arrow-right" class="text-white w-5 h-5"></i>                       
-                                </button>
-                            </div>
-                            <div class="back">
-                                <p>Back Side</p>
-                            </div>
-                        </div>
-                    </div>
-
-                <!-- Card 2 -->
-                        <!-- Parent Card Content --> 
-                        <div class="parent-card relative">
-                            <!-- Image inside parent card -->
-                                <img src="./images/projact-img2.png" alt="Card Image" class="absolute inset-0 z-0 ">
-                            
-    
-                            <!-- Logo in the top-right corner -->
-                            <div class="logo">
-                                <img src="./images/projact-small-img2.png" alt="Logo">
-                            </div>
-                    
-                            <!-- Child Card -->
-                            <div class="child-card flip-card">
-                                <div class=" front flex-col p-4 flex  justify-start h-full bg-getAnAppointment text-white rounded-lg shadow-md">
-                                    <h2 class="text-xl font-bold pt-2 text-left">Working Visa</h2>
-                                    <p class="pb-3 text-[16px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed do eiusmod tempor </p>
-    
-                                    <button class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px]  rounded-full font-roboto  border border-white
-                                        hover:bg-greenBody transition-all duration-200">
-                                        <span>Apply Now</span>
-                                        <i data-feather="arrow-right" class="text-white w-5 h-5"></i>                       
-                                    </button>
-                                </div>
-                                <div class="back">
-                                    <p>Back Side</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    <!-- Card 3 -->
-                        <!-- Parent Card Content --> 
-                        <div class="parent-card relative">
-                            <!-- Image inside parent card -->
-                                <img src="./images/projact-img3.png" alt="Card Image" class="absolute inset-0 z-0 ">
-                            
-    
-                            <!-- Logo in the top-right corner -->
-                            <div class="logo">
-                                <img src="./images/projact-small-img3.png" alt="Logo">
-                            </div>
-                    
-                            <!-- Child Card -->
-                            <div class="child-card flip-card">
-                                <div class=" front flex-col p-4 flex  justify-start h-full bg-getAnAppointment text-white rounded-lg shadow-md">
-                                    <h2 class="text-xl font-bold pt-2 text-left">Working Visa</h2>
-                                    <p class="pb-3 text-[16px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed do eiusmod tempor </p>
-    
-                                    <button class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px]  rounded-full font-roboto  border border-white
-                                        hover:bg-greenBody transition-all duration-200">
-                                        <span>Apply Now</span>
-                                        <i data-feather="arrow-right" class="text-white w-5 h-5"></i>                       
-                                    </button>
-                                </div>
-                                <div class="back">
-                                    <p>Back Side</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    <!-- Card 4 -->
-                        <!-- Parent Card Content --> 
-                        <div class="parent-card relative">
-                            <!-- Image inside parent card -->
-                                <img src="./images/projact-img4.png" alt="Card Image" class="absolute inset-0 z-0 ">
-                            
-    
-                            <!-- Logo in the top-right corner -->
-                            <div class="logo">
-                                <img src="./images/projact-small-img4.png" alt="Logo">
-                            </div>
-                    
-                            <!-- Child Card -->
-                            <div class="child-card flip-card">
-                                <div class=" front flex-col p-4 flex  justify-start h-full bg-getAnAppointment text-white rounded-lg shadow-md">
-                                    <h2 class="text-xl font-bold pt-2 text-left">Working Visa</h2>
-                                    <p class="pb-3 text-[16px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed do eiusmod tempor </p>
-    
-                                    <button class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px]  rounded-full font-roboto  border border-white
-                                        hover:bg-greenBody transition-all duration-200">
-                                        <span>Apply Now</span>
-                                        <i data-feather="arrow-right" class="text-white w-5 h-5"></i>                       
-                                    </button>
-                                </div>
-                                <div class="back">
-                                    <p>Back Side</p>
-                                </div>
-                            </div>
-                        </div>
-
-
-                    <!-- Card 5 -->
-                        <!-- Parent Card Content --> 
-                        <div class="parent-card relative">
-                            <!-- Image inside parent card -->
-                                <img src="./images/projact-img5.png" alt="Card Image" class="absolute inset-0 z-0 ">
-                            
-    
-                            <!-- Logo in the top-right corner -->
-                            <div class="logo">
-                                <img src="./images/projact-small-img5.png" alt="Logo">
-                            </div>
-                    
-                            <!-- Child Card -->
-                            <div class="child-card flip-card">
-                                <div class=" front flex-col p-4 flex  justify-start h-full bg-getAnAppointment text-white rounded-lg shadow-md">
-                                    <h2 class="text-xl font-bold pt-2 text-left">Working Visa</h2>
-                                    <p class="pb-3 text-[16px]">Lorem ipsum dolor sit amet, consectetur adipiscing elit,
-                                        sed do eiusmod tempor </p>
-    
-                                    <button class="bg-getAnAppointment flex flex-row w-fit text-white py-[18px] px-[24px]  rounded-full font-roboto  border border-white
-                                        hover:bg-greenBody transition-all duration-200">
-                                        <span>Apply Now</span>
-                                        <i data-feather="arrow-right" class="text-white w-5 h-5"></i>                       
-                                    </button>
-                                </div>
-                                <div class="back">
-                                    <p>Back Side</p>
-                                </div>
-                            </div>
-                        </div>
-                
-                </div>
-
-
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                    
-                        
+              </div>
             </div>
 
-        </section>
+            <!-- Box-2 -->
+            <div
+              class="z-[100] border border-gray-300 relative p-5 rounded-[20px] mt-7 group"
+            >
+              <div class="flex flex-row gap-x-14">
+                <!-- left side image -->
+                <div>
+                  <img
+                    src="./images/visa-card-img2.png"
+                    alt="Business Visa Image"
+                    width="600px"
+                    height="600px"
+                    class="rounded-[20px] transition-transform duration-700 ease-in-out group-hover:scale-105"
+                  />
+                </div>
+                <!-- right side content -->
+                <div class="flex flex-col space-y-6">
+                  <h2 class="font-roboto font-bold text-greenBody text-[24px]">
+                    Business Visa
+                  </h2>
+                  <p class="font-roboto text-gray-500 text-[18px] leading-6">
+                    Et purus duis sollicitudin dignissim habitant. Egestas nulla
+                    quis the venenatis cras sed eu
+                  </p>
+                  <div class="flex flex-row items-stretch justify-between">
+                    <button
+                      class="flex flex-row items-center justify-center w-fit lg:w-fit py-[18px] px-[18px] rounded-[16px] border border-getAnAppointment group hover:bg-getAnAppointment transition-all duration-700 ease-in-out"
+                    >
+                      <i
+                        data-feather="arrow-right"
+                        class="text-getAnAppointment w-5 h-5 font-bold transition-transform duration-700 -rotate-45 hover:rotate-0 hover:text-white"
+                      ></i>
+                    </button>
+                    <img src="./images/visa-card-right-icon2.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
 
+            <!-- Box-3 -->
+            <div
+              class="z-[100] border border-gray-300 relative p-5 rounded-[20px] mt-7 group"
+            >
+              <div class="flex flex-row gap-x-14">
+                <!-- left side image -->
+                <div>
+                  <img
+                    src="./images/visa-card-img3.png"
+                    alt="Business Visa Image"
+                    width="600px"
+                    height="600px"
+                    class="rounded-[20px] transition-transform duration-700 ease-in-out group-hover:scale-105"
+                  />
+                </div>
+                <!-- right side content -->
+                <div class="flex flex-col space-y-6">
+                  <h2 class="font-roboto font-bold text-greenBody text-[24px]">
+                    Business Visa
+                  </h2>
+                  <p class="font-roboto text-gray-500 text-[18px] leading-6">
+                    Et purus duis sollicitudin dignissim habitant. Egestas nulla
+                    quis the venenatis cras sed eu
+                  </p>
+                  <div class="flex flex-row items-stretch justify-between">
+                    <button
+                      class="flex flex-row items-center justify-center w-fit lg:w-fit py-[18px] px-[18px] rounded-[16px] border border-getAnAppointment group hover:bg-getAnAppointment transition-all duration-700 ease-in-out"
+                    >
+                      <i
+                        data-feather="arrow-right"
+                        class="text-getAnAppointment w-5 h-5 font-bold transition-transform duration-700 -rotate-45 hover:rotate-0 hover:text-white"
+                      ></i>
+                    </button>
+                    <img src="./images/visa-card-right-icon3.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
 
+            <!-- Box-4 -->
+            <div
+              class="z-[100] border border-gray-300 relative p-5 rounded-[20px] mt-7 group"
+            >
+              <div class="flex flex-row gap-x-14">
+                <!-- left side image -->
+                <div>
+                  <img
+                    src="./images/visa-card-img4.png"
+                    alt="Business Visa Image"
+                    width="600px"
+                    height="600px"
+                    class="rounded-[20px] transition-transform duration-700 ease-in-out group-hover:scale-105"
+                  />
+                </div>
+                <!-- right side content -->
+                <div class="flex flex-col space-y-6">
+                  <h2 class="font-roboto font-bold text-greenBody text-[24px]">
+                    Business Visa
+                  </h2>
+                  <p class="font-roboto text-gray-500 text-[18px] leading-6">
+                    Et purus duis sollicitudin dignissim habitant. Egestas nulla
+                    quis the venenatis cras sed eu
+                  </p>
+                  <div class="flex flex-row items-stretch justify-between">
+                    <button
+                      class="flex flex-row items-center justify-center w-fit lg:w-fit py-[18px] px-[18px] rounded-[16px] border border-getAnAppointment group hover:bg-getAnAppointment transition-all duration-700 ease-in-out"
+                    >
+                      <i
+                        data-feather="arrow-right"
+                        class="text-getAnAppointment w-5 h-5 font-bold transition-transform duration-700 -rotate-45 hover:rotate-0 hover:text-white"
+                      ></i>
+                    </button>
+                    <img src="./images/visa-card-right-icon4.png" alt="" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
+      <!-- Available countries -->
 
+      <section class="min-h-[750px]">
+        <!-- Div 0 -->
+        <div class="relative p-6">
+          <!-- Div 1 -->
+          <div class="flex flex-row gap-2 pt-[116px]">
+            <h2
+              class="font-roboto font-bold text-[15px] text-greenBody items-center justify-center pt-1"
+            >
+              AVAILABLE COUNTRIES
+            </h2>
 
+            <img src="./images/available countries logo.svg" alt="" />
+          </div>
 
+          <!-- Div 2 -->
 
+          <div class="flex flex-row">
+            <h2
+              class="font-roboto font-bold text-greenBody text-[30px] lg:text-[52px]"
+            >
+              Urban Escapes City Hopping Adventures
+            </h2>
+
+            <!-- View More button -->
+
+            <div class="flex w-full h-full lg:justify-end pt-5 lg:pt-24 gap-4">
+              <button
+                class="bg-getAnAppointment hidden lg:flex flex-row w-fit text-white py-[16px] px-[27px] rounded-full font-roboto hover:bg-greenBody transition-all duration-200"
+              >
+                <span>View More</span>
+                <i data-feather="arrow-right" class="text-white w-5 h-5"></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- 4 boxes -->
+          <div class="grid grid-cols-4 grid-rows-1 gap-x-6">
+            <!-- Box-1 -->
+            <div
+              class="z-[100] border border-gray-300 relative pt-8 pl-8 py-6 pr-8 rounded-[20px] mt-7 group"
+            >
+              <div class="flex flex-col gap-2">
+                <div
+                  class="relative flex rounded-full w-[70px] h-[70px] items-center justify-center overflow-hidden"
+                >
+                  <img
+                    src="./images/adventure-img1.png"
+                    alt=""
+                    class="w-full h-full sh transition-transform duration-500 ease-in-out group-hover:rotate-[360deg]"
+                  />
+                </div>
+                <h2
+                  class="flex font-roboto font-bold text-greenBody text-[23px] items-center pt-2"
+                >
+                  Canada
+                </h2>
+              </div>
+              <!-- tick and header -->
+              <div class="flex flex-col mt-5 justify-between gap-4">
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Mistakes To Avoid
+                  </p>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Your Startup
+                  </p>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Knew About Fonts
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Box-2 -->
+            <div
+              class="z-[100] border border-gray-300 relative pt-8 pl-8 py-6 pr-8 rounded-[20px] mt-7 group"
+            >
+              <div class="flex flex-col gap-2">
+                <div
+                  class="relative flex rounded-full w-[70px] h-[70px] items-center justify-center overflow-hidden"
+                >
+                  <!-- logo -->
+                  <img
+                    src="./images/adventure-img2.png"
+                    alt=""
+                    class="w-full h-full sh transition-transform duration-500 ease-in-out group-hover:rotate-[360deg]"
+                  />
+                </div>
+                <h2
+                  class="flex font-roboto font-bold text-greenBody text-[23px] items-center pt-2"
+                >
+                  Bangladesh
+                </h2>
+              </div>
+              <!-- tick and header -->
+              <div class="flex flex-col mt-5 justify-between gap-4">
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Mistakes To Avoid
+                  </p>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Your Startup
+                  </p>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Knew About Fonts
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Box-3 -->
+            <div
+              class="z-[100] border border-gray-300 relative pt-8 pl-8 py-6 pr-8 rounded-[20px] mt-7 group"
+            >
+              <div class="flex flex-col gap-2">
+                <div
+                  class="relative flex rounded-full w-[70px] h-[70px] items-center justify-center overflow-hidden"
+                >
+                  <img
+                    src="./images/adventure-img3.png"
+                    alt=""
+                    class="w-full h-full sh transition-transform duration-500 ease-in-out group-hover:rotate-[360deg]"
+                  />
+                </div>
+                <h2
+                  class="flex font-roboto font-bold text-greenBody text-[23px] items-center pt-2"
+                >
+                  Australia
+                </h2>
+              </div>
+              <!-- tick and header -->
+              <div class="flex flex-col mt-5 justify-between gap-4">
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Mistakes To Avoid
+                  </p>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Your Startup
+                  </p>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Knew About Fonts
+                  </p>
+                </div>
+              </div>
+            </div>
+
+            <!-- Box-4 -->
+            <div
+              class="z-[100] border border-gray-300 relative pt-8 pl-8 py-6 pr-8 rounded-[20px] mt-7 group"
+            >
+              <div class="flex flex-col gap-2">
+                <div
+                  class="relative flex rounded-full w-[70px] h-[70px] items-center justify-center overflow-hidden"
+                >
+                  <img
+                    src="./images/adventure-img4.png"
+                    alt=""
+                    class="w-full h-full sh transition-transform duration-500 ease-in-out group-hover:rotate-[360deg]"
+                  />
+                </div>
+                <h2
+                  class="flex font-roboto font-bold text-greenBody text-[23px] items-center pt-2"
+                >
+                  United Kingdom
+                </h2>
+              </div>
+              <!-- tick and header -->
+              <div class="flex flex-col mt-5 justify-between gap-4">
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Mistakes To Avoid
+                  </p>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Your Startup
+                  </p>
+                </div>
+
+                <div class="flex gap-4 items-center">
+                  <img
+                    src="./images/check-7079.svg"
+                    alt=""
+                    class="relative w-[15px] h-[15px]"
+                  />
+                  <p class="font-roboto text-gray-500 text-[17px]">
+                    Knew About Fonts
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Get our best offers quickly -->
+      <section class="min-h-[600px]">
+        <div
+          class="relative flex flex-row items-start justify-start pl-4 pr-4 space-x-7"
+        >
+          <!-- left side -->
+          <div class="w-[40%]">
+            <img
+              src="./images/faq-info-img.png"
+              alt=""
+              class="relative rounded-[20px] w-[full] h-[full]"
+            />
+          </div>
+
+          <!-- right side -->
+          <div class="w-[80%] flex flex-col space-y-6">
+            <!-- top div card -->
+            <div
+              class="bg-white z-[100] border border-gray-300 relative w-full h-full flex flex-col pt-12 pl-16 rounded-[20px]"
+            >
+              <div class="flex flex-row">
+                <!-- left card content -->
+                <div class="flex flex-col">
+                  <div
+                    class="relative flex flex-col rounded-full bg-getAnAppointment w-[80px] h-[80px] items-center justify-center overflow-hidden"
+                  >
+                    <img
+                      src="./images/Card-1.svg"
+                      alt=""
+                      class="w-[50px] h-[50px] shake-image transition-transform duration-500 ease-in-out"
+                    />
+                  </div>
+
+                  <div class="flex flex-col">
+                    <h2
+                      class="font-roboto font-bold text-greenBody text-[22px] pt-9"
+                    >
+                      Get our best offers quickly
+                    </h2>
+                    <p
+                      class="font-roboto text-gray-500 leading-[1.7] text-justify pt-5"
+                    >
+                      Lorem Ipsum is simply dummy text the printing and typese
+                      <br />
+                      Lorem Ipsum has been the industry's standard dummy
+                    </p>
+
+                    <div class="pt-5">
+                      <button
+                        class="bg-white gap-x-1 items-center justify-center border border-gray-300 hidden lg:flex flex-row w-fit text-greenBody py-[16px] px-[27px] rounded-full font-roboto hover:bg-getAnAppointment hover:text-white transition-all duration-200 group"
+                      >
+                        <span>Contact us</span>
+                        <i
+                          data-feather="arrow-right"
+                          class="text-greenBody w-5 h-5 group-hover:text-white"
+                        ></i>
+                      </button>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- right image -->
+                <div class="flex justify-end place-items-end">
+                  <img
+                    src="./images/faq-left-img.png"
+                    alt=""
+                    class="relative w-[300px] h-[350px]"
+                  />
+                </div>
+              </div>
+            </div>
+
+            <!-- bottom div -->
+            <div
+              class="bg-getAnAppointment flex flex-row space-x-8 items-center justify-center rounded-[20px] pt-9 pb-9"
+            >
+              <div>
+                <h2 class="font-roboto font-bold text-white text-[50px]">
+                  10k+
+                </h2>
+                <p class="font-roboto text-white text-[20px]">
+                  Complete project
+                </p>
+              </div>
+
+              <div>
+                <h2 class="font-roboto font-bold text-white text-[50px]">
+                  10k+
+                </h2>
+                <p class="font-roboto text-white text-[20px]">
+                  Complete project
+                </p>
+              </div>
+
+              <div>
+                <h2 class="font-roboto font-bold text-white text-[50px]">
+                  10k+
+                </h2>
+                <p class="font-roboto text-white text-[20px]">
+                  Complete project
+                </p>
+              </div>
+
+              <div>
+                <h2 class="font-roboto font-bold text-white text-[50px]">
+                  10k+
+                </h2>
+                <p class="font-roboto text-white text-[20px]">
+                  Complete project
+                </p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Support Coaching -->
+
+      <section class="min-h-[850px] mx-auto px-6">
+        <!-- Div 0 -->
+        <div class="relative mx-auto">
+          <!-- Div 1 -->
+          <div class="flex flex-row gap-2 pt-[116px]">
+            <img
+              src="./images/card-2.3.svg"
+              alt=""
+              class="relative w-[25px] h-[25px]"
+            />
+            <h2
+              class="font-roboto font-bold text-[15px] text-greenBody items-center justify-center pt-1"
+            >
+              SUPPORTING COACHING
+            </h2>
+          </div>
+
+          <!-- Div 2 -->
+
+          <div class="lg:flex pt-2">
+            <h2
+              class="font-roboto font-bold text-greenBody text-[30px] lg:text-[52px] leading-tight"
+            >
+              A Tapestry of Experiences Cultural Encounters
+            </h2>
+
+            <!-- Next previous button -->
+
+            <div
+              class="flex w-[80%] h-[20%] lg:justify-end pt-5 lg:pt-24 gap-4"
+            >
+              <button
+                class="flex items-center justify-center w-16 h-16 rounded-full border border-gray-300 hover:bg-button transition-all duration-200 group"
+              >
+                <i
+                  data-feather="arrow-left"
+                  class="text-greenBody w-6 h-6 group-hover:text-white"
+                ></i>
+              </button>
+
+              <button
+                class="flex items-center justify-center w-16 h-16 rounded-full border border-gray-300 hover:bg-button transition-all duration-200 group"
+              >
+                <i
+                  data-feather="arrow-right"
+                  class="text-greenBody w-6 h-6 group-hover:text-white"
+                ></i>
+              </button>
+            </div>
+          </div>
+
+          <!-- Div 3 -->
+          <!-- 3 Cards -->
+
+          <div class="flex flex-row gap-x-8 pt-6">
+            <!-- card 1 -->
+            <div class="relative">
+              <!-- Image container -->
+              <div>
+                <img
+                  src="./images/team-img1.png"
+                  alt="Sample Image"
+                  class="w-full h-auto rounded-lg"
+                />
+              </div>
+
+              <!-- Box that overlaps the image -->
+              <div
+                class="absolute flex flex-row items-stretch justify-between w-[90%] bottom-0 right-0 mb-[-64px] px-10 py-7 bg-white shadow-lg rounded-bl-[20px] rounded-br-[20px] rounded-tl-[20px]"
+              >
+                <div>
+                  <h2 class="font-roboto font-bold text-greenBody text-[22px]">
+                    TOFEL COACHING
+                  </h2>
+                  <p class="font-roboto text-gray-400 text-[16px] pt-2">
+                    There are many variati of <br />
+                    passages of engineer
+                  </p>
+                </div>
+                <div class="flex items-center justify-center">
+                  <button
+                    class="flex flex-row items-center justify-center w-fit lg:w-fit py-[18px] px-[18px] rounded-[16px] border border-gray-300 group hover:bg-getAnAppointment transition-all duration-700 ease-in-out group"
+                  >
+                    <i
+                      data-feather="arrow-right"
+                      class="text-greenBody w-6 h-6 font-bold transition-transform duration-700 -rotate-45 group-hover:rotate-0 group-hover:text-white"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- card 2 -->
+            <div class="relative">
+              <!-- Image container -->
+              <div>
+                <img
+                  src="./images/team-img2.png"
+                  alt="Sample Image"
+                  class="w-full h-auto rounded-lg"
+                />
+              </div>
+
+              <!-- Box that overlaps the image -->
+              <div
+                class="absolute flex flex-row items-stretch justify-between w-[90%] bottom-0 right-0 mb-[-64px] px-10 py-7 bg-white shadow-lg rounded-bl-[20px] rounded-br-[20px] rounded-tl-[20px]"
+              >
+                <div>
+                  <h2 class="font-roboto font-bold text-greenBody text-[22px]">
+                    TOFEL COACHING
+                  </h2>
+                  <p class="font-roboto text-gray-400 text-[16px] pt-2">
+                    There are many variati of <br />
+                    passages of engineer
+                  </p>
+                </div>
+                <div class="flex items-center justify-center">
+                  <button
+                    class="flex flex-row items-center justify-center w-fit lg:w-fit py-[18px] px-[18px] rounded-[16px] border border-gray-300 group hover:bg-getAnAppointment transition-all duration-700 ease-in-out group"
+                  >
+                    <i
+                      data-feather="arrow-right"
+                      class="text-greenBody w-6 h-6 font-bold transition-transform duration-700 -rotate-45 group-hover:rotate-0 group-hover:text-white"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+
+            <!-- card 3 -->
+            <div class="relative">
+              <!-- Image container -->
+              <div>
+                <img
+                  src="./images/team-img3.png"
+                  alt="Sample Image"
+                  class="w-full h-auto rounded-lg"
+                />
+              </div>
+
+              <!-- Box that overlaps the image -->
+              <div
+                class="absolute flex flex-row items-stretch justify-between w-[90%] bottom-0 right-0 mb-[-64px] px-10 py-7 bg-white shadow-lg rounded-bl-[20px] rounded-br-[20px] rounded-tl-[20px]"
+              >
+                <div>
+                  <h2 class="font-roboto font-bold text-greenBody text-[22px]">
+                    TOFEL COACHING
+                  </h2>
+                  <p class="font-roboto text-gray-400 text-[16px] pt-2">
+                    There are many variati of <br />
+                    passages of engineer
+                  </p>
+                </div>
+                <div class="flex items-center justify-center">
+                  <button
+                    class="flex flex-row items-center justify-center w-fit lg:w-fit py-[18px] px-[18px] rounded-[16px] border border-gray-300 group hover:bg-getAnAppointment transition-all duration-700 ease-in-out group"
+                  >
+                    <i
+                      data-feather="arrow-right"
+                      class="text-greenBody w-6 h-6 font-bold transition-transform duration-700 -rotate-45 group-hover:rotate-0 group-hover:text-white"
+                    ></i>
+                  </button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
     </div>
 
-
-
-
     <!-- ==========================           JS Script Starts From Here               ============================= -->
-        <!-- JS Script -->
+    <!-- JS Script -->
 
-            <!-- Experience Counter (00-25) Script -->
-            <script>
-                function animateSlidingCounter() {
-                    const tensContainer = document.getElementById('tensContainer');
-                    const unitsContainer = document.getElementById('unitsContainer');
-                    let count = 0;
-                    const target = 25; // Set target number
-                    const speed = 100; // Speed of the count increment
+    <!-- Experience Counter (00-25) Script -->
+    <script>
+      function animateSlidingCounter() {
+        const tensContainer = document.getElementById("tensContainer");
+        const unitsContainer = document.getElementById("unitsContainer");
+        let count = 0;
+        const target = 25; // Set target number
+        const speed = 100; // Speed of the count increment
 
-                    const interval = setInterval(() => {
-                        count++;
+        const interval = setInterval(() => {
+          count++;
 
-                        // Determine the tens and units digits
-                        const tens = Math.floor(count / 10);
-                        const units = count % 10;
+          // Determine the tens and units digits
+          const tens = Math.floor(count / 10);
+          const units = count % 10;
 
-                        // Animate the tens digit if it changes
-                        if (tensContainer.firstElementChild.textContent != tens) {
-                            animateDigit(tensContainer, tens);
-                        }
-                        
-                        // Animate the units digit if it changes
-                        if (unitsContainer.firstElementChild.textContent != units) {
-                            animateDigit(unitsContainer, units);
-                        }
+          // Animate the tens digit if it changes
+          if (tensContainer.firstElementChild.textContent != tens) {
+            animateDigit(tensContainer, tens);
+          }
 
-                        // Stop when the target number is reached
-                        if (count === target) {
-                            clearInterval(interval);
-                        }
-                    }, speed);
-                }
+          // Animate the units digit if it changes
+          if (unitsContainer.firstElementChild.textContent != units) {
+            animateDigit(unitsContainer, units);
+          }
 
-                function animateDigit(container, newDigit) {
-                    const currentDigit = container.firstElementChild; // Get the first digit
+          // Stop when the target number is reached
+          if (count === target) {
+            clearInterval(interval);
+          }
+        }, speed);
+      }
 
-                    const newDigitElement = document.createElement('span');
-                    newDigitElement.className = 'digit font-roboto text-[70px] font-bold text-white';
-                    newDigitElement.textContent = newDigit;
+      function animateDigit(container, newDigit) {
+        const currentDigit = container.firstElementChild; // Get the first digit
 
-                    // Add the new digit to the container
-                    container.appendChild(newDigitElement);
-                    
-                    // Trigger the animation
-                    currentDigit.classList.add('up'); // Slide the current digit up
-                    newDigitElement.classList.add('up'); // Slide the new digit up
+        const newDigitElement = document.createElement("span");
+        newDigitElement.className =
+          "digit font-roboto text-[70px] font-bold text-white";
+        newDigitElement.textContent = newDigit;
 
-                    // Remove the old digit after the transition
-                    setTimeout(() => {
-                        currentDigit.remove();
-                        newDigitElement.classList.remove('up'); // Reset position of the new digit
-                    }, 500); // Match this with the CSS transition duration
-                }
+        // Add the new digit to the container
+        container.appendChild(newDigitElement);
 
-                // Scroll detection and trigger animation
-                window.addEventListener('scroll', function () {
-                    const flipContainer = document.querySelector('.number-container');
-                    const rect = flipContainer.getBoundingClientRect();
+        // Trigger the animation
+        currentDigit.classList.add("up"); // Slide the current digit up
+        newDigitElement.classList.add("up"); // Slide the new digit up
 
-                    if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
-                        animateSlidingCounter();
-                        // Remove the event listener after the animation starts to prevent it from running multiple times
-                        window.removeEventListener('scroll', arguments.callee);
-                    }
-                });
+        // Remove the old digit after the transition
+        setTimeout(() => {
+          currentDigit.remove();
+          newDigitElement.classList.remove("up"); // Reset position of the new digit
+        }, 500); // Match this with the CSS transition duration
+      }
 
-            </script>
+      // Scroll detection and trigger animation
+      window.addEventListener("scroll", function () {
+        const flipContainer = document.querySelector(".number-container");
+        const rect = flipContainer.getBoundingClientRect();
 
+        if (rect.top >= 0 && rect.bottom <= window.innerHeight) {
+          animateSlidingCounter();
+          // Remove the event listener after the animation starts to prevent it from running multiple times
+          window.removeEventListener("scroll", arguments.callee);
+        }
+      });
+    </script>
 
-        <!-- Nav Bar responsive script -->
+    <!-- Nav Bar responsive script -->
 
-        <script>
-            const menuToggle = document.getElementById('menu-toggle');
-            const mobileMenu = document.getElementById('mobile-menu');
-            const closeMenu = document.getElementById('close-menu');
-            let isMenuOpen = false;
-            
-            menuToggle.addEventListener('click', () => {
-                mobileMenu.classList.toggle('hidden');
-                isMenuOpen = !isMenuOpen;
-                
-            });
+    <script>
+      const menuToggle = document.getElementById("menu-toggle");
+      const mobileMenu = document.getElementById("mobile-menu");
+      const closeMenu = document.getElementById("close-menu");
+      let isMenuOpen = false;
 
-            closeMenu.addEventListener('click', () => {
-                mobileMenu.classList.add('hidden');
-                isMenuOpen = false;
-            });
+      menuToggle.addEventListener("click", () => {
+        mobileMenu.classList.toggle("hidden");
+        isMenuOpen = !isMenuOpen;
+      });
 
-            // Close the mobile menu when scrolling
-            window.addEventListener('scroll', () => {
-                if (isMenuOpen) {
-                    mobileMenu.classList.add('hidden');
-                    isMenuOpen = false;
-                }
-            });
+      closeMenu.addEventListener("click", () => {
+        mobileMenu.classList.add("hidden");
+        isMenuOpen = false;
+      });
 
-            // Our Country next previous scrolling button
+      // Close the mobile menu when scrolling
+      window.addEventListener("scroll", () => {
+        if (isMenuOpen) {
+          mobileMenu.classList.add("hidden");
+          isMenuOpen = false;
+        }
+      });
 
-            
-            const prevButton = document.getElementById('prevButton');
-            const nextButton = document.getElementById('nextButton');
-            const cardContainer = document.getElementById('cardContainer');
+      // Our Country next previous scrolling button
 
-            // Scroll amount is the width of one card
-            const scrollAmount = 300; // Adjust based on the card width
+      const prevButton = document.getElementById("prevButton");
+      const nextButton = document.getElementById("nextButton");
+      const cardContainer = document.getElementById("cardContainer");
 
-            nextButton.addEventListener('click', () => {
-                cardContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
-            });
+      // Scroll amount is the width of one card
+      const scrollAmount = 300; // Adjust based on the card width
 
-            prevButton.addEventListener('click', () => {
-                cardContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
-            });
+      nextButton.addEventListener("click", () => {
+        cardContainer.scrollBy({ left: scrollAmount, behavior: "smooth" });
+      });
 
+      prevButton.addEventListener("click", () => {
+        cardContainer.scrollBy({ left: -scrollAmount, behavior: "smooth" });
+      });
+    </script>
 
+    <!-- ICON SCript -->
+    <!-- Feather Icons CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
 
-
-        </script>
-
-
-
-        
-
-            
-
-
-
-
-
-
-<!-- ICON SCript -->
-  <!-- Feather Icons CDN -->
-  <script src="https://cdn.jsdelivr.net/npm/feather-icons/dist/feather.min.js"></script>
-
-  <!-- Initialize Feather Icons -->
-  <script>
+    <!-- Initialize Feather Icons -->
+    <script>
       feather.replace(); // Replaces <i> tags with SVGs
-  </script>
-        
-
-   
-</body>
+    </script>
+  </body>
 </html>
